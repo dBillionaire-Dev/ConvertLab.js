@@ -1,0 +1,383 @@
+*{
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+    padding: auto;
+}
+
+body{
+  background: url(images/mobile-background.jpg) no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  font-family: Ubuntu, sans-serif;
+  color: rgb(249, 249, 249);
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+header{
+  margin: 1rem auto;
+  padding: 2rem;
+  width: 95%;
+  height: 18vh;
+  background-color: #096d8e;
+  border-radius: 10px;
+  position: relative;
+}
+
+header #logo-div{
+  height: 6vh;
+  width: 100%;
+  position: absolute;
+  top: 5%;
+  left: 0%;
+}
+
+h1{
+  font-size: 3.5em;
+}
+
+h2, h3, h4{
+  font-size: 2em;
+}
+
+header #h1-div{
+  background-color: rgba(0, 0, 0, 0.90);
+  width: 100%;
+  height: 11vh;
+  top: 40%;
+  left: 0;
+  padding-top: 1rem;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin: auto;
+  position: absolute;
+}
+
+#conversion-container{
+  width: 95%;
+  height: 75vh;
+  margin: 0.5rem auto 0.2rem;
+  background-color: rgba(249, 249, 249, 0.70);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.convert-item{
+  background-color: rgba(0, 0, 0, 0.90);
+  width: 280px;
+  height: 180px;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 5px solid black;
+}
+
+#mch, #mchc, #mcv, #pcv{
+  padding: 2rem 1rem;
+}
+
+#temperature{
+  padding: 1rem 0.5rem;
+}
+
+#ldl, #mcv, #height1{
+  background-color: rgba(255, 255, 255, 0.70);
+  color: black;
+}
+
+#mchc, #rbc-est{
+  background-color: #096d8e;
+}
+
+#bmi, #pcv, #height2{
+  background-color: rgb(111, 73, 3);
+}
+
+/* Mobile: Portrait View */
+@media (orientation: portrait) and (max-width: 480px) {
+
+  header{
+    margin: 1rem auto;
+    padding: 2rem;
+    height: 15vh;
+    position: relative;
+  }
+
+  #h1-div>h1{
+    font-size: 3em;
+  }
+
+  h2, h3{
+    font-size: 1.2rem;
+  }
+
+  h4{
+    font-size: 1em;
+  }
+
+  header #logo-div{
+    height: 6vh;
+    position: absolute;
+    top: 5%;
+    left: 0%;
+  }
+  
+  header #h1-div{
+    height: 9vh;
+    top: 40%;
+    left: 0;
+    padding-top: 1rem;
+    margin: auto;
+    position: absolute;
+  }
+
+  #conversion-container{
+    height: 73vh;
+    margin: 0.5rem auto 0.2rem;
+    gap: 1rem;
+  }
+
+  .convert-item{
+    width: 100px;
+    height: 100px;
+    padding: 1rem;
+  }
+}
+
+/* Mobile: Landscape view */
+@media (orientation: landscape) and (max-width: 940px) {
+
+  header{
+    margin: 1rem auto;
+    padding: 2rem;
+    height: 25vh;
+    background-color: #096d8e;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  header #logo-div{
+    height: 6vh;
+    position: absolute;
+    top: 10%;
+    left: 0%;
+  }
+  
+  header #h1-div{
+    background-color: rgba(0, 0, 0, 0.90);
+    height: 13vh;
+    top: 50%;
+    left: 0;
+    padding-top: 0.5rem;
+    margin: auto auto 1rem;
+    position: absolute;
+  }
+
+  #h1-div>h1{
+    font-size: 2.5em;
+  }
+
+  h2, h3{
+    font-size: 1.2rem;
+  }
+
+  h4{
+    font-size: 1em;
+  }
+
+  #conversion-container{
+    height: 70vh;
+    margin: 0.5rem auto 0.2rem;
+    gap: 1rem;
+  }
+
+  .convert-item{
+    width: 100px;
+    height: 100px;
+    padding: 1rem;
+  }
+}
+
+/* Tablets Pro */
+@media (orientation: portrait) and (min-width: 800px) and (max-width: 1204px) {
+
+  header{
+    margin: 1rem auto 1.5rem;
+    padding: 2rem;
+    height: 15vh;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  img{
+    width: 50px;
+  }
+
+  header #logo-div{
+    height: 3vh;
+    position: absolute;
+    top: 5%;
+    left: 0%;
+  }
+  
+  header #h1-div{
+    height: 9vh;
+    top: 40%;
+    left: 0;
+    padding-top: 0.5rem;
+    margin: auto;
+    position: absolute;
+  }
+
+  #h1-div>h1{
+    font-size: 3.5rem;
+  }
+
+  h2, h3, h4{
+    font-size: 2rem;
+  }
+
+  #conversion-container{
+    height: 70vh;
+    margin: 1rem auto 0.2rem;
+    gap: 1rem;
+  }
+
+  .convert-item{
+    width: 15rem;
+    height: 10rem;
+    padding: 1rem;
+  }
+}
+
+/* Tablets MIni */
+@media (orientation: portrait) and (min-width: 481px) and (max-width: 798px) {
+  #conversion-container{
+    height: 75vh;
+    gap: 0.5rem;
+  }
+
+  .convert-item{
+    width: 13rem;
+    height: 9rem;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 1000px) and (max-width: 1090px){
+  
+  #conversion-container{
+    height: 70vh;
+    gap: 0.5rem;
+  }
+
+  .convert-item{
+    width: 13rem;
+    height: 8rem;
+  }
+}
+
+/* Tablets MIni: Landscape */
+@media (orientation: landscape) and (min-width: 1100px) and (max-width: 1195px) {
+
+  #conversion-container{
+    height: 70vh;
+    gap: 0.5rem;
+  }
+
+  .convert-item{
+    width: 15rem;
+    height: 9rem;
+  }
+}
+
+@media (max-width: 180px){
+
+  body{
+    height: 750vh;
+  }
+
+  header{
+    margin: 1rem auto;
+    padding: 2rem;
+    height: 15vh;
+    position: relative;
+  }
+
+  header #logo-div{
+    height: 6vh;
+    position: absolute;
+    top: 5%;
+    left: 0%;
+  }
+
+  img{
+    max-width: 15px;
+  }
+  
+  header #h1-div{
+    height: 20vh;
+    top: 40%;
+    left: 0;
+    padding-top: 0.5rem;
+    margin: auto;
+    position: absolute;
+  }
+
+  #h1-div h1{
+    font-size: 1.5em;
+  }
+
+  #conversion-container{
+    height: 650vh;
+    margin: 0.5rem auto 0.2rem;
+    gap: 0.5rem;
+  }
+
+  .convert-item{
+    width: 100px;
+    height: 100px;
+    padding: 1rem;
+  }
+
+  footer{
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1281px){
+  #conversion-container{
+    width: 95%;
+    height: 75vh;
+    margin: 0.5rem auto 0.2rem;
+    background-color: rgba(249, 249, 249, 0.70);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .convert-item{
+    background-color: rgba(0, 0, 0, 0.90);
+    width: 280px;
+    height: 160px;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 5px solid black;
+  }
+}

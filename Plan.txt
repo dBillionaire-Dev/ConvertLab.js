@@ -1,0 +1,14 @@
+My Plan for the app
+Conversion Units
+
+LDL & BMI Calculations//
+mg/dL to mmol/L and vice versa//
+metres to cm and vice versa
+foot to metres and vice versa
+Pounds to Kg and vice versa
+MCHC, MCV, and MCH Calculations//
+MCHC = (MCH x 100) / Hb//
+
+Hb estimation, HCT estimation,  and RBC estimation
+PCV from l/l to % and vice versa.
+
