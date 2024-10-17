@@ -12,7 +12,7 @@ body{
   background-size: cover;
   height: 100vh;
   font-family: Ubuntu, sans-serif;
-  color: rgb(249, 249, 249);
+  color: rgb(255, 255, 255);
 }
 
 main{
@@ -86,26 +86,47 @@ header #h1-div{
   border-radius: 10px;
   padding: 1rem;
   border: 5px solid black;
+  color: white;
 }
 
-#mch, #mchc, #mcv, #pcv{
+.mch, .mchc, .mcv, .pcv{
   padding: 2rem 1rem;
 }
 
-#temperature{
+.temperature{
   padding: 1rem 0.5rem;
 }
 
-#ldl, #mcv, #height1{
+button:hover{
+  background-color: #f9f9f9;
+  color: rgba(0, 0, 0, 0.75)
+}
+
+button:active{
+  background-color: rgb(89, 122, 144);
+  color: rgba(0, 0, 0, 0.75)
+}
+
+button.ldl:hover, button.mcv:hover, button.bilirubin:hover{
+  background-color: rgba(0, 0, 0, 0.80);
+  color: #f9f9f9;
+}
+
+button.ldl:active, button.mcv:active, button.bilirubin:active, button.bmi:active, button.pcv:active, button.height:active, button.mchc:active, button.rbc-est:active{
+  background-color: rgb(89, 122, 144);
+  color: rgba(0, 0, 0, 0.75)
+}
+
+button.ldl, button.mcv, button.bilirubin{
   background-color: rgba(255, 255, 255, 0.70);
   color: black;
 }
 
-#mchc, #rbc-est{
+button.mchc, button.rbc-est{
   background-color: #096d8e;
 }
 
-#bmi, #pcv, #height2{
+button.bmi, button.pcv, button.height{
   background-color: rgb(111, 73, 3);
 }
 
