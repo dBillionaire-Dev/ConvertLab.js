@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/converticon-removebg-preview.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -24,22 +25,39 @@
         <h2>Chemical Conversion Unit</h2>
 
         <div id="conversion-container">
-            <div id="mmol" class="convert-item"><h3>mmol/L <br>to <br>mg/dL</h3></div>
-            <div id="ldl" class="convert-item"><h2>LDL <br>Est.</h2></div>
-            <div id="bmi" class="convert-item"><h2>BMI <br>Calc.</h2></div>
-            <div id="mchc" class="convert-item"><h2>MCHC</h2></div>
-            <div id="mch" class="convert-item"><h2>MCH</h2></div>
-            <div id="mcv" class="convert-item"><h2>MCV</h2></div>
-            <div id="pcv" class="convert-item"><h2>PCV</h2></div>
-            <div id="hb-est" class="convert-item"><h2>Hb <br>Est.</h2></div>
-            <div id="rbc-est" class="convert-item"><h2>RBC <br>Est.</h2></div>
-            <div id="height1" class="convert-item"><h3>cm <br>to <br>metres</h3></div>
-            <div id="height2" class="convert-item"><h3>Ft <br>to <br>metres</h3></div>
-            <div id="temperature" class="convert-item"><h4>Celsius <br>to <br>Fahrenheit</h4></div>
+            <div><button class="mmol convert-item" type="submit"><h3>mmol/L <br>to <br>mg/dL</h3></button></div>
+            <div><button class="ldl convert-item" type="submit"><h2>LDL <br>Est.</h2></button></div>
+            <div><button class="bmi convert-item" type="submit"><h2>BMI <br>Calc.</h2></button></div>
+            <div><button class="mchc convert-item" type="submit"><h2>MCHC</h2></button></div>
+            <div><button class="mch convert-item" type="submit"><h2>MCH</h2></button></div>
+            <div><button class="mcv convert-item" type="submit"><h2>MCV</h2></button></div>
+            <div><button class="pcv convert-item" type="submit"><h2>PCV</h2></button></div>
+            <div><button class="hb-est convert-item" type="submit"><h2>Hb <br>Est.</h2></button></div>
+            <div><button class="rbc-est convert-item" type="submit"><h2>RBC <br>Est.</h2></button></div>
+            <div><button class="bilirubin convert-item" type="submit"><h2>IN.B</h2></button></div>
+            <div><button class="height convert-item" type="submit"><h3>Ft <br>to <br>metres</h3></button></div>
+            <div><button class="temperature convert-item" type="submit"><h4>Celsius <br>to <br>Fahrenheit</h4></button></div>
         </div>
         <footer style="background-color: rgba(0, 0, 0, 0.85); padding: 0.5rem;">
             <p style="color: #f9f9f9; font-size: 14px;">Developed by <a style="color:#096d8e" href="http://x.com/dBillionaireDev" target="_blank">Nex.Dev👨🏽‍💻</a></p>
         </footer>
+
+        <!-- <div class="modal hidden">
+            <button class="btn--close-modal">&times;</button>
+            <h2 class="modal__header">
+              Convert your units <br />
+              in just <span class="highlight">split seconds</span>
+            </h2>
+            <form class="modal__form">
+              <label>Enter value in mmol/L</label>
+              <input type="number" id="mmol-input"/>
+              <button class="btn--submit-modal">Convert</button>
+              <button class="btn">Next step &rarr;</button>
+              <h4 id="mmol-display"></h4>
+            </form>
+          </div> -->
+          <div class="second-overlay hidden"></div>
+      
     </div>
 
   </main>
