@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/converticon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/72a3f5eca0.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -12,7 +13,7 @@
 </head>
 <body>
    <main>
-    <div class="overlay">
+    <div class="overlay main">
         <header>
             <div id="logo-div">
                 <img src="images/logo.png" width="30px" alt="logo">
@@ -25,19 +26,229 @@
         <h2>Chemical Conversion Unit</h2>
 
         <div id="conversion-container">
-            <div><button class="mmol convert-item" type="submit"><h3>mmol/L <br>to <br>mg/dL</h3></button></div>
-            <div><button class="ldl convert-item" type="submit"><h2>LDL <br>Est.</h2></button></div>
-            <div><button class="bmi convert-item" type="submit"><h2>BMI <br>Calc.</h2></button></div>
-            <div><button class="mchc convert-item" type="submit"><h2>MCHC</h2></button></div>
-            <div><button class="mch convert-item" type="submit"><h2>MCH</h2></button></div>
-            <div><button class="mcv convert-item" type="submit"><h2>MCV</h2></button></div>
-            <div><button class="pcv convert-item" type="submit"><h2>PCV</h2></button></div>
-            <div><button class="hb-est convert-item" type="submit"><h2>Hb <br>Est.</h2></button></div>
-            <div><button class="rbc-est convert-item" type="submit"><h2>RBC <br>Est.</h2></button></div>
-            <div><button class="bilirubin convert-item" type="submit"><h2>IN.B</h2></button></div>
-            <div><button class="height convert-item" type="submit"><h3>Ft <br>to <br>metres</h3></button></div>
-            <div><button class="temperature convert-item" type="submit"><h4>Celsius <br>to <br>Fahrenheit</h4></button></div>
+
+            <div>
+                <button class="mmol convert-item" type="submit" onclick="openMmolPopup()"><h3>mmol/L <br>to <br>mg/dL</h3></button>
+                <div class="popup" id="mmol-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>mmol/L Conversion</h2><button type="submit" onclick="openMgdlPopup()">
+                        <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                    <form action="get">
+                        <input type="number" name="mmol" placeholder="Enter mmol/L value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Convert">
+                    </form>
+                </div>
+                <div class="popup" id="mgdl-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>mg/dL Conversion</h2><button type="submit" onclick="reOpenMmolPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                    <form action="get">
+                        <input type="number" name="mgdl" placeholder="Enter mg/dL value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Convert">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="ldl convert-item" type="submit" onclick="openLdlPopup()"><h2>LDL <br>Est.</h2></button>
+                <div class="popup" id="ldl-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>LDL Calculation</h2>
+                    <form action="get">
+                        <input type="number" name="tchol" placeholder="Enter Total Cholesterol value">
+                        <input type="number" name="trig" placeholder="Enter Triglyceride value">
+                        <input type="number" name="hdl" placeholder="Enter HDL value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Get LDL">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="bmi convert-item" type="submit" onclick="openBmiPopup()"><h2>BMI <br>Calc.</h2></button>
+                <div class="popup" id="bmi-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>BMI Calculation</h2>
+                    <form action="get">
+                        <input type="number" name="weight" placeholder="Enter Weight (kg)">
+                        <input type="number" name="height" placeholder="Enter Height (cm)">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Get BMI">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="mchc convert-item" type="submit" onclick="openMchcPopup()"><h2>MCHC</h2></button>
+                <div class="popup" id="mchc-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>MCHC Estimation</h2>
+                    <form action="get">
+                        <input type="number" name="hgb" placeholder="Enter Hemoglobin Value">
+                        <input type="number" name="pcv" placeholder="Enter PCV (%) Value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Get MCHC Value">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="mch convert-item" type="submit" onclick="openMchPopup()"><h2>MCH</h2></button>
+                <div class="popup" id="mch-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>MCH Estimation</h2>
+                    <form action="get">
+                        <input type="number" name="hgb" placeholder="Enter Hemoglobin Value">
+                        <input type="number" name="rbc" placeholder="Enter RBC Value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Get MCH">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="mcv convert-item" type="submit" onclick="openMcvPopup()"><h2>MCV</h2></button>
+                <div class="popup" id="mcv-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>MCV Estimation</h2>
+                    <form action="get">
+                        <input type="number" name="pcv" placeholder="Enter PCV (%) Value">
+                        <input type="number" name="rbc" placeholder="Enter RBC Value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Get MCV">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="pcv convert-item" type="submit"  onclick="openPcvPopup()"><h2>PCV</h2></button>
+                <div class="popup">
+                    <div class="popup" id="pcv-popup">
+                        <a class="close-modal" onclick="closePopup()">
+                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                        <h2>PCV (%) Conversion</h2><button type="submit" onclick="openLitrePopup()">
+                            <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                        <form action="get">
+                            <input type="number" name="pcv" placeholder="Enter PCV (%) value">
+                            <p >Result: </p>
+                            <input class="btn" type="button" value="Convert">
+                        </form>
+                    </div>
+                    <div class="popup" id="litre-popup">
+                        <a class="close-modal" onclick="closePopup()">
+                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                        <h2>PCV (l/l) Conversion</h2><button type="submit" onclick="reOpenPcvPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                        <form action="get">
+                            <input type="number" name="litre" placeholder="Enter PCV (l/l) value">
+                            <p >Result: </p>
+                            <input class="btn" type="button" value="Convert">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button class="hb-est convert-item" type="submit" onclick="openHgbPopup()"><h2>Hb <br>Est.</h2></button>
+                <div class="popup" id="hgb-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>Hemoglobin Concentration</h2>
+                    <form action="get">
+                        <input type="number" name="pcv" placeholder="Enter PCV (%) value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Get Hb Concentration">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="rbc-est convert-item" type="submit" onclick="openRbcPopup()"><h2>RBC <br>Est.</h2></button>
+                <div class="popup" id="rbc-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>RBC Count</h2>
+                    <form action="get">
+                        <input type="number" name="hgb" placeholder="Enter Hemoglobin value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Convert">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="bilirubin convert-item" type="submit" onclick="openInbPopup()"><h2>IN.B</h2></button>
+                <div class="popup" id="inb-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>Unconjugated (Indirect) Bilirubin</h2>
+                    <form action="get">
+                        <input type="number" name="direct" placeholder="Enter Total Bilirubin value">
+                        <input type="number" name="direct" placeholder="Enter Direct Bilirubin value">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Convert">
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <button class="height convert-item" type="submit" onclick="openFootPopup()"><h3>Ft <br>to <br>metres</h3></button>
+                    <div class="popup" id="foot-popup">
+                        <a class="close-modal" onclick="closePopup()">
+                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                        <h2>Foot to Metres</h2><button type="submit" onclick="openMetrePopup()">
+                            <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                        <form action="get">
+                            <input type="number" name="foot" placeholder="Enter Height (ft) value">
+                            <p >Result: </p>
+                            <input class="btn" type="button" value="Convert">
+                        </form>
+                    </div>
+                    <div class="popup" id="metre-popup">
+                        <a class="close-modal" onclick="closePopup()">
+                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                        <h2>Metres to Foot</h2><button type="submit" onclick="reOpenFootPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                        <form action="get">
+                            <input type="number" name="metre" placeholder="Enter Height (metres) value">
+                            <p >Result: </p>
+                            <input class="btn" type="button" value="Convert">
+                        </form>
+                    </div>
+            </div>
+
+            <div>
+                <button class="temperature convert-item" type="submit" onclick="openCelsiusPopup()"><h4>Celsius <br>to <br>Fahrenheit</h4></button>
+                <div class="popup" id="celsius-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>Celsius to Fahrenheit</h2><button type="submit" onclick="openFahrenheitPopup()">
+                        <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                    <form action="get">
+                        <input type="number" name="celsius" placeholder="Temperature in °C">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Convert">
+                    </form>
+                </div>
+                <div class="popup" id="fahrenheit-popup">
+                    <a class="close-modal" onclick="closePopup()">
+                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                    <h2>Fahrenheit to Celsius</h2><button type="submit" onclick="reOpenCelsiusPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                    <form action="get">
+                        <input type="number" name="metre" placeholder="Temperature in °F">
+                        <p >Result: </p>
+                        <input class="btn" type="button" value="Convert">
+                    </form>
+                </div>
+            </div>
         </div>
+
         <footer style="background-color: rgba(0, 0, 0, 0.85); padding: 0.5rem;">
             <p style="color: #f9f9f9; font-size: 14px;">Developed by <a style="color:#096d8e" href="http://x.com/dBillionaireDev" target="_blank">Nex.Dev👨🏽‍💻</a></p>
         </footer>
