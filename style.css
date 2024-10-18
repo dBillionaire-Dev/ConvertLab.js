@@ -20,6 +20,99 @@ main{
   flex-direction: column;
 }
 
+input{
+  border-radius: 10px;
+  background-color: #fff;
+  color:rgba(0, 0, 0, 0.65);
+  padding: 0.5rem 1rem;
+  margin: 1rem auto;
+}
+
+.popup button{
+  padding: 5px 10px;
+  background-color: #096d8e;
+  border-radius: 5px;
+  position: relative;
+  left: 40%;
+  top: -15%;
+  cursor: pointer;
+}
+
+.close-modal{
+  position: absolute;
+  top:-1%;
+  left: 96%;
+  cursor: pointer;
+}
+
+.popup .btn{
+  background-color: #096d8e;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 22px;
+  padding: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.popup .btn:hover{
+  background-color: #333;
+  color: #fff;
+}
+
+.popup .btn:active{
+  background-color: rgb(52, 136, 52);
+  color: #fff;
+}
+
+.popup{
+  width: 500px;
+  height: 300px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3rem 1rem;
+  color: black;
+  border: 3px solid black;
+  box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s,  opacity 0.4s,   box-shadow 0.4s,   border 0.4s, center 0.4s;
+  visibility: hidden;
+  transition: top 0ms ease-in-out 0ms,
+              opacity 300ms ease-in-out,
+              margin-top 300ms ease-in-out;
+}
+
+#ldl-popup{
+  height: 400px;
+}
+
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* body.open-popup .overlay{
+  filter: blur(5px);
+  background: rgba(0, 0, 0, 0.08);
+  transition: filter 0ms ease-in-out 0ms;
+}
+
+body.open-popup .popup{
+  top: 50%;
+  opacity: 1;
+  transition: top 0ms ease-in-out 0ms,
+              opacity 300ms ease-in-out,
+              margin-top 300ms ease-in-out;
+} */
+
+/* .close-popup{
+  visibility: hidden;
+} */
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.65);
   position: absolute;
@@ -178,6 +271,22 @@ button.bmi, button.pcv, button.height{
     width: 100px;
     height: 100px;
     padding: 1rem;
+  }
+
+  .popup{
+    width: 358px;
+    height: 300px;
+    border: 5px solid black;
+  }
+
+  #ldl-popup input{
+    margin: 1rem auto;
+  }
+
+  .close-modal{
+    position: absolute;
+    top:-1%;
+    left: 95%;
   }
 }
 
