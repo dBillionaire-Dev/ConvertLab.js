@@ -35,9 +35,9 @@
                     <h2>mmol/L Conversion</h2><button type="submit" onclick="openMgdlPopup()">
                         <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
                     <form action="get">
-                        <input type="number" name="mmol" placeholder="Enter mmol/L value">
-                        <p >Result: </p>
-                        <input class="btn" type="button" value="Convert">
+                        <input type="number" id="mmol-value" name="mmol" placeholder="Enter mmol/L value">
+                        <p id="mmol-result"></p>
+                        <input class="btn" type="button" value="Convert" onclick="convertMmol()">
                     </form>
                 </div>
                 <div class="popup" id="mgdl-popup">
@@ -45,9 +45,9 @@
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
                     <h2>mg/dL Conversion</h2><button type="submit" onclick="reOpenMmolPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
                     <form action="get">
-                        <input type="number" name="mgdl" placeholder="Enter mg/dL value">
-                        <p >Result: </p>
-                        <input class="btn" type="button" value="Convert">
+                        <input type="number" id="mgdl-value" name="mgdl" placeholder="Enter mg/dL value">
+                        <p id="mgdl-result"></p>
+                        <input class="btn" type="button" value="Convert" onclick="convertMgdl()">
                     </form>
                 </div>
             </div>
@@ -59,11 +59,11 @@
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
                     <h2>LDL Calculation</h2>
                     <form action="get">
-                        <input type="number" name="tchol" placeholder="Enter Total Cholesterol value">
-                        <input type="number" name="trig" placeholder="Enter Triglyceride value">
-                        <input type="number" name="hdl" placeholder="Enter HDL value">
-                        <p >Result: </p>
-                        <input class="btn" type="button" value="Get LDL">
+                        <input type="number" id="total-cholesterol-value" name="tchol" placeholder="Enter Total Cholesterol value">
+                        <input type="number" id="triglyceride-value" name="trig" placeholder="Enter Triglyceride value">
+                        <input type="number" id="hdl-value" name="hdl" placeholder="Enter HDL value">
+                        <p id="ldl-result"></p>
+                        <input class="btn" type="button" value="Get LDL" onclick="calculateLdl()">
                     </form>
                 </div>
             </div>
@@ -75,10 +75,10 @@
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
                     <h2>BMI Calculation</h2>
                     <form action="get">
-                        <input type="number" name="weight" placeholder="Enter Weight (kg)">
-                        <input type="number" name="height" placeholder="Enter Height (cm)">
-                        <p >Result: </p>
-                        <input class="btn" type="button" value="Get BMI">
+                        <input type="number" id="weight-value" name="weight" placeholder="Enter Weight (kg)">
+                        <input type="number" id="height-value" name="height" placeholder="Enter Height (cm)">
+                        <p id="bmi-result"> </p>
+                        <input class="btn" type="button" value="Get BMI" onclick="calculateBmi()">
                     </form>
                 </div>
             </div>
@@ -90,10 +90,10 @@
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
                     <h2>MCHC Estimation</h2>
                     <form action="get">
-                        <input type="number" name="hgb" placeholder="Enter Hemoglobin Value">
-                        <input type="number" name="pcv" placeholder="Enter PCV (%) Value">
-                        <p >Result: </p>
-                        <input class="btn" type="button" value="Get MCHC Value">
+                        <input type="number" id="hgb-value" name="hgb" placeholder="Enter Hemoglobin Value">
+                        <input type="number" id="pcv-value" name="pcv" placeholder="Enter PCV (%) Value">
+                        <p id="mchc-result">: </p>
+                        <input class="btn" type="button" value="Get MCHC Value" onclick="calculateMchc()">
                     </form>
                 </div>
             </div>
@@ -176,9 +176,9 @@
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
                     <h2>RBC Count</h2>
                     <form action="get">
-                        <input type="number" name="hgb" placeholder="Enter Hemoglobin value">
-                        <p >Result: </p>
-                        <input class="btn" type="button" value="Convert">
+                        <input type="number" id="hgb" name="hgb" placeholder="Enter Hemoglobin value">
+                        <p id="rbc-result"></p>
+                        <input class="btn" type="button" value="Get RBC Count" onclick="calculateRbc()">
                     </form>
                 </div>
             </div>
