@@ -125,3 +125,50 @@ const closePopup = () => {
   celsiusPopup.classList.remove("open-popup");
   fahrenheitPopup.classList.remove("open-popup");
 };
+
+const convertMmol = () => {
+  const mmolValue = document.getElementById("mmol-value").value;
+  const mmolResult = document.getElementById("mmol-result");
+  const mmolToMgdl = (mmolValue * 18).toFixed(2);
+  mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL`;
+};
+
+const convertMgdl = () => {
+  const mgdlValue = document.getElementById("mgdl-value").value;
+  const mgdlResult = document.getElementById("mgdl-result");
+  const mgdlToMmol = (mgdlValue / 18).toFixed(2);
+  mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L`;
+};
+
+const calculateLdl = () => {
+  const totalCholesterolValue = document.getElementById("total-cholesterol-value").value;
+  const hdlCholesterolValue = document.getElementById("hdl-value").value;
+  const triglycerideValue = document.getElementById("triglyceride-value").value;
+  const triglycerideFinal = triglycerideValue / 5;
+  const ldlResult = document.getElementById("ldl-result");
+  const ldlCalculation = (totalCholesterolValue - triglycerideFinal) - hdlCholesterolValue;
+  ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L`;
+};
+
+const calculateBmi = () => {
+  const weightValue = document.getElementById("weight-value").value;
+  const heightValue = document.getElementById("height-value").value/100;
+  const bmiResult = document.getElementById("bmi-result");
+  const bmiCalculation = weightValue / (heightValue * heightValue);
+  bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)}`;
+};
+
+const calculateMchc = () => {
+  const hgbValue = document.getElementById("hgb-value").value;
+  const pcvValue = document.getElementById("pcv-value").value;
+  const mchcResult = document.getElementById("mchc-result");
+  const mchcCalculation = (hgbValue * 100) / pcvValue;
+  mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)}`;
+};
+
+const calculateRbc = () => {
+  const hgbValue = document.getElementById("hgb").value;
+  const rbcResult = document.getElementById("rbc-result");
+  const rbcCalculation = (hgbValue / 3) * 1.1;
+  rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10^12/L`;
+};
