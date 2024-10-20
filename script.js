@@ -124,7 +124,29 @@ const closePopup = () => {
   metrePopup.classList.remove("open-popup");
   celsiusPopup.classList.remove("open-popup");
   fahrenheitPopup.classList.remove("open-popup");
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closePopup(); // Call the function to close the popup
+    }
+  });
+
+  // Clear the input field when the popup is closed
+  const inputField = document.querySelectorAll('input[type="number"]');
+  inputField.value = '';
 };
+
+// function closeModal() {
+//   const modal = document.getElementById('myModal');
+//   popup.classList.remove('open');
+  
+//   // Clear the input field when the popup is closed
+//   const inputField = document.getElementById("myInput");
+//   inputField.value = '';
+
+//   // Refresh the page to completely reset (optional, use either refresh or clear input)
+//   location.reload();
+// }
 
 const convertMmol = () => {
   const mmolValue = document.getElementById("mmol-value").value;
@@ -155,7 +177,7 @@ const calculateBmi = () => {
   const heightValue = document.getElementById("height-value").value/100;
   const bmiResult = document.getElementById("bmi-result");
   const bmiCalculation = weightValue / (heightValue * heightValue);
-  bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)}`;
+  bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup>`;
 };
 
 const calculateMchc = () => {
@@ -163,12 +185,111 @@ const calculateMchc = () => {
   const pcvValue = document.getElementById("pcv-value").value;
   const mchcResult = document.getElementById("mchc-result");
   const mchcCalculation = (hgbValue * 100) / pcvValue;
-  mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)}`;
+  mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL`;
 };
 
+const calculateMch = () => {
+  const hbValue = document.getElementById("hb-value").value;
+  const rbcValue = document.getElementById("rbc-figure").value;
+  const mchResult = document.getElementById("mch-result");
+  const mchCalculation = (hbValue * 10) / rbcValue;
+  mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg`;
+}
+
+const calculateMcv  = () => {
+  const hctValue = document.getElementById("hct-value").value;
+  const rbcFigure = document.getElementById("rbc").value;
+  const mcvResult = document.getElementById("mcv-result");
+  const mcvCalculation = (hctValue * 10) / rbcFigure;
+  mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl`;
+}
+
+const convertPercentage = () => {
+  const pcvGenderValue = document.getElementById("pcv-gender").value;
+  const pcvAgeValue = document.getElementById("pcv-age").value;
+  const percentageValue = document.getElementById("percentage-pcv").value;
+  const percentageResult = document.getElementById("percentage-result");
+  const percentageCalculation = percentageValue / 100;
+  percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+}
+
+const convertLitre = () => {
+  const litreGenderValue = document.getElementById("litre-gender").value;
+  const liteAgeValue = document.getElementById("litre-age").value;
+  const litreValue = document.getElementById("litre-pcv").value;
+  const litreResult = document.getElementById("litre-result");
+  const litreCalculation = litreValue * 100;
+  litreResult.innerHTML = `Result: ${litreValue} Litre = ${litreCalculation.toFixed(2)}%`;
+}
+
+const calculateHb = () => {
+  const genderValue = document.getElementById("gender").value;
+  const ageValue = document.getElementById("age").value;
+  const hctValue = document.getElementById("hemoglobin").value;
+  const hemoglobinResult = document.getElementById("hemoglobin-result");
+  //const hbCalculation = (140 - ageValue) * (genderValue === "male" ? 0.8 : 0.6) * hctValue;
+  const hbCalculation = hctValue / 3;
+  hemoglobinResult.innerHTML = `Result: HB = ${hbCalculation.toFixed(2)} g/dL`;
+}
 const calculateRbc = () => {
   const hgbValue = document.getElementById("hgb").value;
   const rbcResult = document.getElementById("rbc-result");
   const rbcCalculation = (hgbValue / 3) * 1.1;
-  rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10^12/L`;
+  rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L`;
 };
+
+const calculateInb = () => {
+  const totalBilirubin = document.getElementById("total-bilirubin").value;
+  const directBilirubin = document.getElementById("direct-bilirubin").value;
+  const  indirectBilirubinResult = document.getElementById("inb-result");
+  const  indirectBilirubin = totalBilirubin - directBilirubin;
+  indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} μmol/L`;
+}
+
+const convertToMetres = () => {
+  const foot = document.getElementById("foot-value").value;
+  const footResult = document.getElementById("foot-result");
+  const footToMetres = foot * 0.3048;
+  footResult.innerHTML = `Result: ${foot} Ft = ${footToMetres.toFixed(2)} metres`;
+}
+
+const convertToFoot = () => {
+  let metre = document.getElementById("metre-value").value;
+  let metreResult = document.getElementById("metre-result");
+  let metreToFoot = metre / 0.3048;
+
+  function metersToFeetInches() {
+    // Convert meters to feet
+    let totalFeet = metre * 3.28084;
+    
+    // Extract the whole number for feet
+    let feet = Math.floor(totalFeet);
+    
+    // Get the decimal part and convert it to inches
+    let inches = Math.round((totalFeet - feet) * 12);
+  
+    // If inches is 12, increment feet and reset inches to 0
+    if (inches === 12) {
+      feet += 1;
+      inches = 0;
+    }
+  
+    return `${feet}' ${inches}"`;
+  }
+
+  metreResult.innerHTML = `Result: ${metre} metres = ${metreToFoot.toFixed(2)} Ft (${metersToFeetInches()})`;
+}
+
+const convertCelsius = () => {
+  const celsiusValue = document.getElementById("celsius-value").value;
+  const celsiusResult = document.getElementById("celsius-result");
+  const celsiusToFahrenheit = (celsiusValue * 9/5) + 32;
+  celsiusResult.innerHTML = `Result: ${celsiusValue}°C = ${celsiusToFahrenheit.toFixed(2)}°F`;
+}
+
+const convertFahrenheit = () => {
+  const fahrenheitValue = document.getElementById("fahrenheit-value").value;
+  const fahrenheitResult = document.getElementById("fahrenheit-result");
+  const fahrenheitToCelsius = (fahrenheitValue - 32) * 5/9;
+  fahrenheitResult.innerHTML = `Result: ${fahrenheitValue}°F = ${fahrenheitToCelsius.toFixed(2)}°C`;
+}
