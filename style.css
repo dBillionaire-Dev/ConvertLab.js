@@ -20,7 +20,7 @@ main{
   flex-direction: column;
 }
 
-input{
+input, select{
   border-radius: 10px;
   background-color: #fff;
   color:rgba(0, 0, 0, 0.65);
@@ -85,7 +85,7 @@ input{
               margin-top 300ms ease-in-out;
 }
 
-#ldl-popup{
+#ldl-popup, #hgb-popup, #litre-popup, #pcv-popup{
   height: 400px;
 }
 
