@@ -16,124 +16,121 @@ const footPopup = document.getElementById('foot-popup');
 const metrePopup = document.getElementById('metre-popup');
 const celsiusPopup = document.getElementById('celsius-popup');
 const fahrenheitPopup = document.getElementById('fahrenheit-popup');
+const popup = document.querySelectorAll('.popup');
 
 const openMmolPopup = () => {
-  // popup.forEach((item) => {
-  //   item.classList.add('open-popup');
-  // });
-  mmolPopup.classList.add("open-popup");
-  
+  mmolPopup.classList.add("open-popup"); // Show the popup
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const reOpenMmolPopup = () => {
    mmolPopup.classList.add("open-popup");
    mgdlPopup.classList.remove("open-popup");
+   document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 const openMgdlPopup = () => {
   mgdlPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openLdlPopup = () => {
   ldlPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openBmiPopup = () => {
   bmiPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openMchcPopup = () => {
   mchcPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openMchPopup = () => {
   mchPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openMcvPopup = () => {
   mcvPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openPcvPopup = () => {
   pcvPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
   
 };
 
 const reOpenPcvPopup = () => {
    pcvPopup.classList.add("open-popup");
    litrePopup.classList.remove("open-popup");
+   document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openLitrePopup = () => {
   litrePopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openHgbPopup = () => {
   hgbPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openRbcPopup = () => {
   rbcPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openInbPopup = () => {
   inbPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openFootPopup = () => {
   footPopup.classList.add("open-popup");
-  
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const reOpenFootPopup = () => {
    footPopup.classList.add("open-popup");
    metrePopup.classList.remove("open-popup");
+   document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openMetrePopup = () => {
   metrePopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openCelsiusPopup = () => {
   celsiusPopup.classList.add("open-popup");
-  
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const reOpenCelsiusPopup = () => {
    celsiusPopup.classList.add("open-popup");
    fahrenheitPopup.classList.remove("open-popup");
+   document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const openFahrenheitPopup = () => {
   fahrenheitPopup.classList.add("open-popup");
+  document.getElementById('overlay').classList.add('blur'); // Add blur effect
 };
 
 const closePopup = () => {
-  mmolPopup.classList.remove("open-popup");
-  mgdlPopup.classList.remove("open-popup");
-  ldlPopup.classList.remove("open-popup");
-  bmiPopup.classList.remove("open-popup");
-  mchcPopup.classList.remove("open-popup");
-  pcvPopup.classList.remove("open-popup");
-  litrePopup.classList.remove("open-popup");
-  mchPopup.classList.remove("open-popup");
-  mcvPopup.classList.remove("open-popup");
-  hgbPopup.classList.remove("open-popup");
-  rbcPopup.classList.remove("open-popup");
-  inbPopup.classList.remove("open-popup");
-  footPopup.classList.remove("open-popup");
-  metrePopup.classList.remove("open-popup");
-  celsiusPopup.classList.remove("open-popup");
-  fahrenheitPopup.classList.remove("open-popup");
-
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closePopup(); // Call the function to close the popup
-    }
-  });
-
-  // Clear the input field when the popup is closed
-  const inputField = document.querySelectorAll('input[type="number"]');
-  inputField.value = '';
+  const popups = document.querySelectorAll('.popup');
+    popups.forEach(popup => {
+        popup.classList.remove("open-popup");
+    });
+    document.getElementById('overlay').classList.remove('blur');
+  // // Clear the input field when the popup is closed
+  // const inputField = document.querySelectorAll('input[type="number"]');
+  // inputField.value = '';
 };
 
 // function closeModal() {
