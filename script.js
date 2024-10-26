@@ -126,24 +126,46 @@ const closePopup = () => {
   const popups = document.querySelectorAll('.popup');
     popups.forEach(popup => {
         popup.classList.remove("open-popup");
+        const inputs = popup.querySelectorAll('input[type="number"], input[type="text"]');
+        inputs.forEach(input => {
+            input.value = ''; // Clear the input value
+        });
+        const displays = popup.querySelectorAll('p');
+        displays.forEach(p => {
+            p.innerHTML = ''; // Clear the display value
+        });
     });
+
     document.getElementById('overlay').classList.remove('blur');
-  // // Clear the input field when the popup is closed
-  // const inputField = document.querySelectorAll('input[type="number"]');
-  // inputField.value = '';
 };
 
-// function closeModal() {
-//   const modal = document.getElementById('myModal');
-//   popup.classList.remove('open');
-  
-//   // Clear the input field when the popup is closed
-//   const inputField = document.getElementById("myInput");
-//   inputField.value = '';
 
-//   // Refresh the page to completely reset (optional, use either refresh or clear input)
-//   location.reload();
-// }
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+      const popups = document.querySelectorAll('.popup');
+      popups.forEach(popup => {
+          // Check if the popup has the 'open-popup' class
+          if (popup.classList.contains('open-popup')) {
+              closePopup(); // Call the function to close the popup
+          }
+      });
+  }
+});
+
+const selected = document.querySelector('.selected');
+    const optionsContainer = document.querySelector('.options');
+    const optionsList = document.querySelectorAll('.options div');
+
+    selected.addEventListener('click', () => {
+        optionsContainer.classList.toggle('active');
+    });
+
+    optionsList.forEach(option => {
+        option.addEventListener('click', () => {
+            selected.innerHTML = option.innerHTML; // Set the selected value
+            optionsContainer.classList.remove('active'); // Close the dropdown
+        });
+    });
 
 const convertMmol = () => {
   const mmolValue = document.getElementById("mmol-value").value;
