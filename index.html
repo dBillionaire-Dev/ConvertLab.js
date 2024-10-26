@@ -13,7 +13,8 @@
 </head>
 <body>
    <main>
-    <div class="overlay main">
+    <!-- <div id="overlay"></div> -->
+    <div class="overlay main" id="overlay">
         <header>
             <div id="logo-div">
                 <img src="images/logo.png" width="30px" alt="logo">
@@ -28,242 +29,51 @@
         <div id="conversion-container" onkeydown="if (event.key === 'Escape') { closePopup(); }">
 
             <div>
-                <button class="mmol convert-item" type="submit" onclick="openMmolPopup()"><h3>mmol/L <br>to <br>mg/dL</h3></button>
-                <div class="popup" id="mmol-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>mmol/L Conversion</h2><button type="submit" onclick="openMgdlPopup()">
-                        <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                    <form>
-                        <input type="number" id="mmol-value" name="mmol" placeholder="Enter mmol/L value" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMmol(); }">
-                        <p id="mmol-result"></p>
-                        <input class="btn" id="mmol-btn" type="button" value="Convert" onclick="convertMmol()">
-                    </form>
-                </div>
-                <div class="popup" id="mgdl-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>mg/dL Conversion</h2><button type="submit" onclick="reOpenMmolPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                    <form>
-                        <input type="number" id="mgdl-value" name="mgdl" placeholder="Enter mg/dL value" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMgdl(); }">
-                        <p id="mgdl-result"></p>
-                        <input class="btn" type="button" value="Convert" onclick="convertMgdl()">
-                    </form>
-                </div>
+                <button class="mmol convert-item" type="submit" onclick="openMmolPopup()"><h3>mmol/L <br>to <br>mg/dL</h3></button>     
             </div>
 
             <div>
                 <button class="ldl convert-item" type="submit" onclick="openLdlPopup()"><h2>LDL <br>Est.</h2></button>
-                <div class="popup" id="ldl-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>LDL Calculation</h2>
-                    <form>
-                        <input type="number" id="total-cholesterol-value" name="tchol" placeholder="Enter Total Cholesterol value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateLdl(); }">
-                        <input type="number" id="triglyceride-value" name="trig" placeholder="Enter Triglyceride value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateLdl(); }">
-                        <input type="number" id="hdl-value" name="hdl" placeholder="Enter HDL value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateLdl(); }">
-                        <p id="ldl-result"></p>
-                        <input class="btn" type="button" value="Get LDL" onclick="calculateLdl()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="bmi convert-item" type="submit" onclick="openBmiPopup()"><h2>BMI <br>Calc.</h2></button>
-                <div class="popup" id="bmi-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>BMI Calculation</h2>
-                    <form>
-                        <input type="number" id="weight-value" name="weight" placeholder="Enter Weight (kg)"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateBmi(); }">
-                        <input type="number" id="height-value" name="height" placeholder="Enter Height (cm)"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateBmi(); }">
-                        <p id="bmi-result"> </p>
-                        <input class="btn" type="button" value="Get BMI" onclick="calculateBmi()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="mchc convert-item" type="submit" onclick="openMchcPopup()"><h2>MCHC</h2></button>
-                <div class="popup" id="mchc-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>MCHC Estimation</h2>
-                    <form>
-                        <input type="number" id="hgb-value" name="hgb" placeholder="Enter Hemoglobin Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMchc(); }">
-                        <input type="number" id="pcv-value" name="pcv" placeholder="Enter PCV (%) Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMchc(); }">
-                        <p id="mchc-result"> </p>
-                        <input class="btn" type="button" value="Get MCHC Value" onclick="calculateMchc()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="mch convert-item" type="submit" onclick="openMchPopup()"><h2>MCH</h2></button>
-                <div class="popup" id="mch-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>MCH Estimation</h2>
-                    <form>
-                        <input type="number" id="hb-value" name="hgb" placeholder="Enter Hemoglobin Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMch(); }">
-                        <input type="number" id="rbc-figure" name="rbc" placeholder="Enter RBC Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMch(); }">
-                        <p id="mch-result"></p>
-                        <input class="btn" type="button" value="Get MCH" onclick="calculateMch()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="mcv convert-item" type="submit" onclick="openMcvPopup()"><h2>MCV</h2></button>
-                <div class="popup" id="mcv-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>MCV Estimation</h2>
-                    <form>
-                        <input type="number" id="hct-value" name="pcv" placeholder="Enter PCV (%) Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMcv(); }">
-                        <input type="number" id="rbc" name="rbc" placeholder="Enter RBC Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMcv(); }">
-                        <p id="mcv-result"></p>
-                        <input class="btn" type="button" value="Get MCV" onclick="calculateMcv()">
-                    </form>
-                </div>
             </div>
 
             <div>
-                <button class="pcv convert-item" type="submit"  onclick="openPcvPopup()"><h2>PCV Units Conv.</h2></button>
-                <div class="popup">
-                    <div class="popup" id="pcv-popup">
-                        <a class="close-modal" onclick="closePopup()">
-                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                        <h2>PCV (%) Conversion</h2><button type="submit" onclick="openLitrePopup()">
-                            <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                        <form>
-                            <input type="number" name="age" id="pcv-age" placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
-                            <select name="" id="pcv-gender">
-                                <option value="1" default>Select Gender</option>
-                                <option value="2"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</option>
-                                <option value="3"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</option>
-                            </select>
-                            <input type="number" id="percentage-pcv" name="pcv" placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
-                            <p id="percentage-result"></p>
-                            <input class="btn" type="button" value="Convert" onclick="convertPercentage()">
-                        </form>
-                    </div>
-                    <div class="popup" id="litre-popup">
-                        <a class="close-modal" onclick="closePopup()">
-                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                        <h2>PCV (l/l) Conversion</h2><button type="submit" onclick="reOpenPcvPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                        <form>
-                            <input type="number" name="age" id="litre-age" placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
-                            <select name="" id="litre-gender">
-                                <option value="1" default>Select Gender</option>
-                                <option value="2"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</option>
-                                <option value="3"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</option>
-                            </select>
-                            <input type="number" id="litre-pcv" name="litre" placeholder="Enter PCV (l/l) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
-                            <p id="litre-result"></p>
-                            <input class="btn" type="button" value="Convert" onclick="convertLitre()">
-                        </form>
-                    </div>
-                </div>
+                <button class="pcv convert-item" type="submit"  onclick="openPcvPopup()"><h2>PCV 
             </div>
 
             <div>
                 <button class="hb-est convert-item" type="submit" onclick="openHgbPopup()"><h2>Hb <br>Est.</h2></button>
-                <div class="popup" id="hgb-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>Hemoglobin Concentration</h2>
-                    <form>
-                        <input type="number" name="age" id="age" placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
-                        <select name="" id="gender">
-                            <option value="1" default>Select Gender</option>
-                            <option value="2"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</option>
-                            <option value="3"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</option>
-                        </select>
-                        <input type="number" id="hemoglobin" name="pcv" placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
-                        <p id="hemoglobin-result"></p>
-                        <input class="btn" type="button" value="Get Hb Concentration" onclick="calculateHb()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="rbc-est convert-item" type="submit" onclick="openRbcPopup()"><h2>RBC <br>Est.</h2></button>
-                <div class="popup" id="rbc-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>RBC Count</h2>
-                    <form>
-                        <input type="number" id="hgb" name="hgb" placeholder="Enter Hemoglobin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateRbc(); }">
-                        <p id="rbc-result"></p>
-                        <input class="btn" type="button" value="Get RBC Count" onclick="calculateRbc()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="bilirubin convert-item" type="submit" onclick="openInbPopup()"><h2>IN.B</h2></button>
-                <div class="popup" id="inb-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>Unconjugated (Indirect) Bilirubin</h2>
-                    <form>
-                        <input type="number" id="total-bilirubin" name="direct" placeholder="Enter Total Bilirubin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateInb(); }">
-                        <input type="number" id="direct-bilirubin" name="direct" placeholder="Enter Direct Bilirubin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateInb(); }">
-                        <p id="inb-result"> </p>
-                        <input class="btn" type="button" value="Convert" onclick="calculateInb()">
-                    </form>
-                </div>
             </div>
 
             <div>
                 <button class="height convert-item" type="submit" onclick="openMetrePopup()"><h3>Metres <br>to <br>Ft</h3></button>
-                    <div class="popup" id="foot-popup">
-                        <a class="close-modal" onclick="closePopup()">
-                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                        <h2>Foot to Metres</h2><button type="submit" onclick="openMetrePopup()">
-                            <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                        <form>
-                            <input type="number" id="foot-value" name="foot" placeholder="Enter Height (ft) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertToMetres(); }">
-                            <p id="foot-result"> </p>
-                            <input class="btn" type="button" value="Convert" onclick="convertToMetres()">
-                        </form>
-                    </div>
-                    <div class="popup" id="metre-popup">
-                        <a class="close-modal" onclick="closePopup()">
-                            <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                        <h2>Metres to Foot</h2><button type="submit" onclick="reOpenFootPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                        <form>
-                            <input type="number" id="metre-value" name="metre" placeholder="Enter Height (metres) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertToFoot(); }">
-                            <p id="metre-result"></p>
-                            <input class="btn" type="button" value="Convert" onclick="convertToFoot()">
-                        </form>
-                    </div>
             </div>
 
             <div>
                 <button class="temperature convert-item" type="submit" onclick="openCelsiusPopup()"><h4>Celsius <br>to <br>Fahrenheit</h4></button>
-                <div class="popup" id="celsius-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>Celsius to Fahrenheit</h2><button type="submit" onclick="openFahrenheitPopup()">
-                        <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                    <form>
-                        <input type="number" id="celsius-value" name="celsius" placeholder="Temperature in °C"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertCelsius(); }">
-                        <p id="celsius-result"> </p>
-                        <input class="btn" type="button" value="Convert" onclick="convertCelsius()">
-                    </form>
-                </div>
-                <div class="popup" id="fahrenheit-popup">
-                    <a class="close-modal" onclick="closePopup()">
-                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-                    <h2>Fahrenheit to Celsius</h2><button type="submit" onclick="reOpenCelsiusPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-                    <form>
-                        <input type="number" id="fahrenheit-value" name="metre" placeholder="Temperature in °F"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertFahrenheit(); }">
-                        <p id="fahrenheit-result"> </p>
-                        <input class="btn" type="button" value="Convert" onclick="convertFahrenheit()">
-                    </form>
-                </div>
             </div>
         </div>
 
@@ -271,24 +81,201 @@
             <p style="color: #f9f9f9; font-size: 14px;">Developed by <a style="color:#096d8e" href="http://x.com/dBillionaireDev" target="_blank">Nex.Dev👨🏽‍💻</a></p>
         </footer>
 
-        <!-- <div class="modal hidden">
-            <button class="btn--close-modal">&times;</button>
-            <h2 class="modal__header">
-              Convert your units <br />
-              in just <span class="highlight">split seconds</span>
-            </h2>
-            <form class="modal__form">
-              <label>Enter value in mmol/L</label>
-              <input type="number" id="mmol-input"/>
-              <button class="btn--submit-modal">Convert</button>
-              <button class="btn">Next step &rarr;</button>
-              <h4 id="mmol-display"></h4>
-            </form>
-          </div> -->
-          <div class="second-overlay hidden"></div>
-      
     </div>
 
+    <div id="all-popup">
+        <div class="popup" id="mmol-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>mmol/L Conversion</h2><button type="submit" onclick="openMgdlPopup()">
+                <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+            <form>
+                <input type="number" id="mmol-value" name="mmol" required placeholder="Enter mmol/L value" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMmol(); }">
+                <p id="mmol-result"></p>
+                <input class="btn" id="mmol-btn" type="button" value="Convert" onclick="convertMmol()">
+            </form>
+        </div>
+        <div class="popup" id="mgdl-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>mg/dL Conversion</h2><button type="submit" onclick="reOpenMmolPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+            <form>
+                <input type="number" id="mgdl-value" name="mgdl" required placeholder="Enter mg/dL value" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMgdl(); }">
+                <p id="mgdl-result"></p>
+                <input class="btn" type="button" value="Convert" onclick="convertMgdl()">
+            </form>
+        </div>
+        <div class="popup" id="ldl-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>LDL Calculation</h2>
+            <form>
+                <input type="number" id="total-cholesterol-value" name="tchol" placeholder="Enter Total Cholesterol value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateLdl(); }">
+                <input type="number" id="triglyceride-value" name="trig" placeholder="Enter Triglyceride value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateLdl(); }">
+                <input type="number" id="hdl-value" name="hdl" placeholder="Enter HDL value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateLdl(); }">
+                <p id="ldl-result"></p>
+                <input class="btn" type="button" value="Get LDL" onclick="calculateLdl()">
+            </form>
+        </div>
+        <div class="popup" id="bmi-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>BMI Calculation</h2>
+            <form>
+                <input type="number" id="weight-value" name="weight" placeholder="Enter Weight (kg)"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateBmi(); }">
+                <input type="number" id="height-value" name="height" placeholder="Enter Height (cm)"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateBmi(); }">
+                <p id="bmi-result"> </p>
+                <input class="btn" type="button" value="Get BMI" onclick="calculateBmi()">
+            </form>
+        </div>
+        <div class="popup" id="mchc-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>MCHC Estimation</h2>
+            <form>
+                <input type="number" id="hgb-value" name="hgb" placeholder="Enter Hemoglobin Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMchc(); }">
+                <input type="number" id="pcv-value" name="pcv" placeholder="Enter PCV (%) Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMchc(); }">
+                <p id="mchc-result"> </p>
+                <input class="btn" type="button" value="Get MCHC Value" onclick="calculateMchc()">
+            </form>
+        </div>
+        <div class="popup" id="mch-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>MCH Estimation</h2>
+            <form>
+                <input type="number" id="hb-value" name="hgb" placeholder="Enter Hemoglobin Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMch(); }">
+                <input type="number" id="rbc-figure" name="rbc" placeholder="Enter RBC Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMch(); }">
+                <p id="mch-result"></p>
+                <input class="btn" type="button" value="Get MCH" onclick="calculateMch()">
+            </form>
+        </div>
+        <div class="popup" id="mcv-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>MCV Estimation</h2>
+            <form>
+                <input type="number" id="hct-value" name="pcv" placeholder="Enter PCV (%) Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMcv(); }">
+                <input type="number" id="rbc" name="rbc" placeholder="Enter RBC Value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateMcv(); }">
+                <p id="mcv-result"></p>
+                <input class="btn" type="button" value="Get MCV" onclick="calculateMcv()">
+            </form>
+        </div>
+        <div class="popup">
+            <div class="popup" id="pcv-popup">
+                <a class="close-modal" onclick="closePopup()">
+                    <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                <h2>PCV (%) Conversion</h2><button type="submit" onclick="openLitrePopup()">
+                    <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                <form>
+                    <input type="number" name="age" id="pcv-age" placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
+                    <select name="" id="pcv-gender">
+                        <option value="1" default>Select Gender</option>
+                        <option value="2"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</option>
+                        <option value="3"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</option>
+                    </select>
+                    <input type="number" id="percentage-pcv" name="pcv" placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
+                    <p id="percentage-result"></p>
+                    <input class="btn" type="button" value="Convert" onclick="convertPercentage()">
+                </form>
+            </div>
+            <div class="popup" id="litre-popup">
+                <a class="close-modal" onclick="closePopup()">
+                    <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+                <h2>PCV (l/l) Conversion</h2><button type="submit" onclick="reOpenPcvPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+                <form>
+                    <input type="number" name="age" id="litre-age" placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
+                    <select name="" id="litre-gender">
+                        <option value="1" default>Select Gender</option>
+                        <option value="2"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</option>
+                        <option value="3"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</option>
+                    </select>
+                    <input type="number" id="litre-pcv" name="litre" placeholder="Enter PCV (l/l) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
+                    <p id="litre-result"></p>
+                    <input class="btn" type="button" value="Convert" onclick="convertLitre()">
+                </form>
+            </div>
+        </div>
+        <div class="popup" id="hgb-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>Hemoglobin Concentration</h2>
+            <form>
+                <input type="number" name="age" id="age" placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
+                <select name="" id="gender">
+                    <option value="1" default>Select Gender</option>
+                    <option value="2"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</option>
+                    <option value="3"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</option>
+                </select>
+                <input type="number" id="hemoglobin" name="pcv" placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
+                <p id="hemoglobin-result"></p>
+                <input class="btn" type="button" value="Get Hb Concentration" onclick="calculateHb()">
+            </form>
+        </div>
+        <div class="popup" id="rbc-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>RBC Count</h2>
+            <form>
+                <input type="number" id="hgb" name="hgb" placeholder="Enter Hemoglobin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateRbc(); }">
+                <p id="rbc-result"></p>
+                <input class="btn" type="button" value="Get RBC Count" onclick="calculateRbc()">
+            </form>
+        </div>
+        <div class="popup" id="inb-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>Unconjugated (Indirect) Bilirubin</h2>
+            <form>
+                <input type="number" id="total-bilirubin" name="direct" placeholder="Enter Total Bilirubin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateInb(); }">
+                <input type="number" id="direct-bilirubin" name="direct" placeholder="Enter Direct Bilirubin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateInb(); }">
+                <p id="inb-result"> </p>
+                <input class="btn" type="button" value="Convert" onclick="calculateInb()">
+            </form>
+        </div>
+        <div class="popup" id="foot-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>Foot to Metres</h2><button type="submit" onclick="openMetrePopup()">
+                <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+            <form>
+                <input type="number" id="foot-value" name="foot" placeholder="Enter Height (ft) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertToMetres(); }">
+                <p id="foot-result"> </p>
+                <input class="btn" type="button" value="Convert" onclick="convertToMetres()">
+            </form>
+        </div>
+        <div class="popup" id="metre-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>Metres to Foot</h2><button type="submit" onclick="reOpenFootPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+            <form>
+                <input type="number" id="metre-value" name="metre" placeholder="Enter Height (metres) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertToFoot(); }">
+                <p id="metre-result"></p>
+                <input class="btn" type="button" value="Convert" onclick="convertToFoot()">
+            </form>
+        </div>
+        <div class="popup" id="celsius-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>Celsius to Fahrenheit</h2><button type="submit" onclick="openFahrenheitPopup()">
+                <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+            <form>
+                <input type="number" id="celsius-value" name="celsius" placeholder="Temperature in °C"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertCelsius(); }">
+                <p id="celsius-result"> </p>
+                <input class="btn" type="button" value="Convert" onclick="convertCelsius()">
+            </form>
+        </div>
+        <div class="popup" id="fahrenheit-popup">
+            <a class="close-modal" onclick="closePopup()">
+                <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
+            <h2>Fahrenheit to Celsius</h2><button type="submit" onclick="reOpenCelsiusPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
+            <form>
+                <input type="number" id="fahrenheit-value" name="metre" placeholder="Temperature in °F"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertFahrenheit(); }">
+                <p id="fahrenheit-result"> </p>
+                <input class="btn" type="button" value="Convert" onclick="convertFahrenheit()">
+            </form>
+        </div>
+    </div>
   </main>
 
     <script src="script.js"></script>
