@@ -102,6 +102,41 @@ input, select{
   pointer-events: none; /* Prevent interaction with blurred content */
 }
 
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.selected {
+  padding: 0.5rem;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 10px;
+  color:rgba(0, 0, 0, 0.65);
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid black;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.options.active {
+  display: block;
+}
+
+.options div {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.options div:hover {
+  background-color: #f1f1f1;
+}
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.65);
