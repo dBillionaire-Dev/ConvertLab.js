@@ -3,12 +3,22 @@ Conversion Units
 
 LDL & BMI Calculations//
 mg/dL to mmol/L and vice versa//
-metres to cm and vice versa
-foot to metres and vice versa
-Pounds to Kg and vice versa
+metres to cm and vice versa x
+foot to metres and vice versa//
+Pounds to Kg and vice versa x
 MCHC, MCV, and MCH Calculations//
 MCHC = (MCH x 100) / Hb//
 
-Hb estimation, HCT estimation,  and RBC estimation
-PCV from l/l to % and vice versa.
+Hb estimation, HCT estimation,  and RBC estimation//
+PCV from l/l to % and vice versa.//
+
+//Event Listener using enter key//
+Error handling (5)
+Blur background on popup (3)
+//Include S.I units for the ones with units //
+Indicate the clinical interpretations of the value if High or not (Study the reference range). (2)
+Implement the refreshing of the inputed values once the popup is closed. (1)
+Add font awesome to the gender at PCV, Litre and Hemoglobin. (4)
+//Escape Button closes popup //
+make the mmol/l according to different parameters (6)
 
