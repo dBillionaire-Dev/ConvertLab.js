@@ -77,8 +77,9 @@ input, select{
   padding: 3rem 1rem;
   color: black;
   border: 3px solid black;
+  z-index: 100;
   box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s,  opacity 0.4s,   box-shadow 0.4s,   border 0.4s, center 0.4s;
+  transition: transform 0.4s,  opacity 0.4s,   box-shadow 0.4s,   border 0.4s, top 0.4s;
   visibility: hidden;
   transition: top 0ms ease-in-out 0ms,
               opacity 300ms ease-in-out,
@@ -93,25 +94,14 @@ input, select{
   visibility: visible;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
-/* body.open-popup .overlay{
-  filter: blur(5px);
-  background: rgba(0, 0, 0, 0.08);
-  transition: filter 0ms ease-in-out 0ms;
+.blur {
+  filter: blur(5px); /* Adjust the blur intensity as needed */
+  pointer-events: none; /* Prevent interaction with blurred content */
 }
 
-body.open-popup .popup{
-  top: 50%;
-  opacity: 1;
-  transition: top 0ms ease-in-out 0ms,
-              opacity 300ms ease-in-out,
-              margin-top 300ms ease-in-out;
-} */
-
-/* .close-popup{
-  visibility: hidden;
-} */
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.65);
