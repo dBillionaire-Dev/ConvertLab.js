@@ -17,6 +17,7 @@ const metrePopup = document.getElementById('metre-popup');
 const celsiusPopup = document.getElementById('celsius-popup');
 const fahrenheitPopup = document.getElementById('fahrenheit-popup');
 const popup = document.querySelectorAll('.popup');
+let element = document.getElementById("error-popup");
 
 const openMmolPopup = () => {
   mmolPopup.classList.add("open-popup"); // Show the popup
@@ -134,11 +135,11 @@ const closePopup = () => {
         displays.forEach(p => {
             p.innerHTML = ''; // Clear the display value
         });
+        element.style.visibility = "hidden";
     });
 
     document.getElementById('overlay').classList.remove('blur');
 };
-
 
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
@@ -152,7 +153,123 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-const selected = document.querySelector('.selected');
+const openErrorPopup = () => {
+  element.style.visibility = "visible";
+  document.getElementById('all-popup').classList.add('error-blur'); 
+}
+const closeErrorPopup = () => {
+  element.style.visibility = "hidden";
+  document.getElementById('all-popup').classList.remove('error-blur'); 
+}
+
+const convertMmol = () => {
+  const mmolValue = document.getElementById("mmol-value").value;
+  const mmolResult = document.getElementById("mmol-result");
+  const mmolToMgdl = (mmolValue * 18).toFixed(2);
+  
+  if (mmolValue.trim() === '') {
+    mmolResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL`;
+  }
+  
+};
+
+const convertMgdl = () => {
+  const mgdlValue = document.getElementById("mgdl-value").value;
+  const mgdlResult = document.getElementById("mgdl-result");
+  const mgdlToMmol = (mgdlValue / 18).toFixed(2);
+
+  if (mgdlValue.trim() === '') {
+    mgdlResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+  mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L`;
+  }
+
+};
+
+const calculateLdl = () => {
+  const totalCholesterolValue = document.getElementById("total-cholesterol-value").value;
+  const hdlCholesterolValue = document.getElementById("hdl-value").value;
+  const triglycerideValue = document.getElementById("triglyceride-value").value;
+  const triglycerideFinal = triglycerideValue / 5;
+  const ldlResult = document.getElementById("ldl-result");
+  const ldlCalculation = (totalCholesterolValue - triglycerideFinal) - hdlCholesterolValue;
+
+  if (totalCholesterolValue.trim() === '' || hdlCholesterolValue.trim() === '' || triglycerideValue.trim() === '') {
+    ldlResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L`;
+  }
+  
+};
+
+const calculateBmi = () => {
+  const weightValue = document.getElementById("weight-value").value;
+  const heightValue = document.getElementById("height-value").value/100;
+  const bmiResult = document.getElementById("bmi-result");
+  const bmiCalculation = weightValue / (heightValue * heightValue);
+
+  if (weightValue.trim() === '' || heightValue.trim() === '') {
+    bmiResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup>`;
+  }
+};
+
+const calculateMchc = () => {
+  const hgbValue = document.getElementById("hgb-value").value;
+  const pcvValue = document.getElementById("pcv-value").value;
+  const mchcResult = document.getElementById("mchc-result");
+  const mchcCalculation = (hgbValue * 100) / pcvValue;
+
+  if (hgbValue.trim() === '' || pcvValue.trim() === '') {
+    mchcResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+      mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL`;
+  }
+  
+};
+
+const calculateMch = () => {
+  const hbValue = document.getElementById("hb-value").value;
+  const rbcValue = document.getElementById("rbc-figure").value;
+  const mchResult = document.getElementById("mch-result");
+  const mchCalculation = (hbValue * 10) / rbcValue;
+
+  if (hbValue.trim() === '' || rbcValue.trim() === '') {
+    mchResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+   mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg`;
+  }
+}
+
+const calculateMcv  = () => {
+  const hctValue = document.getElementById("hct-value").value;
+  const rbcFigure = document.getElementById("rbc").value;
+  const mcvResult = document.getElementById("mcv-result");
+  const mcvCalculation = (hctValue * 10) / rbcFigure;
+
+  if (hctValue.trim() === '' || rbcFigure.trim() === '') {
+    mcvResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl`;
+  }
+  
+}
+
+const popups = document.querySelectorAll('.popup');
+let selectedGenderValue = null;
+
+popups.forEach(popup => {
+    const selected = document.querySelector('.selected');
     const optionsContainer = document.querySelector('.options');
     const optionsList = document.querySelectorAll('.options div');
 
@@ -163,82 +280,53 @@ const selected = document.querySelector('.selected');
     optionsList.forEach(option => {
         option.addEventListener('click', () => {
             selected.innerHTML = option.innerHTML; // Set the selected value
+            selectedGenderValue = option.innerHTML;
             optionsContainer.classList.remove('active'); // Close the dropdown
+            console.log(selectedGenderValue);
         });
     });
-
-const convertMmol = () => {
-  const mmolValue = document.getElementById("mmol-value").value;
-  const mmolResult = document.getElementById("mmol-result");
-  const mmolToMgdl = (mmolValue * 18).toFixed(2);
-  mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL`;
-};
-
-const convertMgdl = () => {
-  const mgdlValue = document.getElementById("mgdl-value").value;
-  const mgdlResult = document.getElementById("mgdl-result");
-  const mgdlToMmol = (mgdlValue / 18).toFixed(2);
-  mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L`;
-};
-
-const calculateLdl = () => {
-  const totalCholesterolValue = document.getElementById("total-cholesterol-value").value;
-  const hdlCholesterolValue = document.getElementById("hdl-value").value;
-  const triglycerideValue = document.getElementById("triglyceride-value").value;
-  const triglycerideFinal = triglycerideValue / 5;
-  const ldlResult = document.getElementById("ldl-result");
-  const ldlCalculation = (totalCholesterolValue - triglycerideFinal) - hdlCholesterolValue;
-  ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L`;
-};
-
-const calculateBmi = () => {
-  const weightValue = document.getElementById("weight-value").value;
-  const heightValue = document.getElementById("height-value").value/100;
-  const bmiResult = document.getElementById("bmi-result");
-  const bmiCalculation = weightValue / (heightValue * heightValue);
-  bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup>`;
-};
-
-const calculateMchc = () => {
-  const hgbValue = document.getElementById("hgb-value").value;
-  const pcvValue = document.getElementById("pcv-value").value;
-  const mchcResult = document.getElementById("mchc-result");
-  const mchcCalculation = (hgbValue * 100) / pcvValue;
-  mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL`;
-};
-
-const calculateMch = () => {
-  const hbValue = document.getElementById("hb-value").value;
-  const rbcValue = document.getElementById("rbc-figure").value;
-  const mchResult = document.getElementById("mch-result");
-  const mchCalculation = (hbValue * 10) / rbcValue;
-  mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg`;
-}
-
-const calculateMcv  = () => {
-  const hctValue = document.getElementById("hct-value").value;
-  const rbcFigure = document.getElementById("rbc").value;
-  const mcvResult = document.getElementById("mcv-result");
-  const mcvCalculation = (hctValue * 10) / rbcFigure;
-  mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl`;
-}
+});
 
 const convertPercentage = () => {
-  const pcvGenderValue = document.getElementById("pcv-gender").value;
-  const pcvAgeValue = document.getElementById("pcv-age").value;
-  const percentageValue = document.getElementById("percentage-pcv").value;
-  const percentageResult = document.getElementById("percentage-result");
-  const percentageCalculation = percentageValue / 100;
-  percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  let pcvGenderValue = selectedGenderValue;
+  let pcvAgeValue = document.getElementById("pcv-age").value;
+  let percentageValue = document.getElementById("percentage-pcv").value;
+  let percentageResult = document.getElementById("percentage-result");
+  let percentageCalculation = percentageValue / 100;
+
+  // if  (pcvGenderValue === "1"  && pcvAgeValue >= 18) {
+  //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  //   // if (percentageCalculation >= 0.40 && percentageCalculation <= 0.54) {
+  //   //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  //   // } else if (percentageCalculation > 0.54){
+  //   //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l (HIGH)`;
+  //   // } else {
+  //   //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l (LOW)`;
+  //   // }
+  // }
+  if (percentageValue.trim() === '' || pcvAgeValue.trim() === '') {
+    percentageResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  }
+  
 }
 
 const convertLitre = () => {
   const litreGenderValue = document.getElementById("litre-gender").value;
-  const liteAgeValue = document.getElementById("litre-age").value;
+  const litreAgeValue = document.getElementById("litre-age").value;
   const litreValue = document.getElementById("litre-pcv").value;
   const litreResult = document.getElementById("litre-result");
   const litreCalculation = litreValue * 100;
-  litreResult.innerHTML = `Result: ${litreValue} Litre = ${litreCalculation.toFixed(2)}%`;
+
+  if (litreValue.trim() === '' || litreAgeValue.trim() === '') {
+    litreResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    litreResult.innerHTML = `Result: ${litreValue} Litre = ${litreCalculation.toFixed(2)}%`;
+  }
+  
 }
 
 const calculateHb = () => {
@@ -248,13 +336,28 @@ const calculateHb = () => {
   const hemoglobinResult = document.getElementById("hemoglobin-result");
   //const hbCalculation = (140 - ageValue) * (genderValue === "male" ? 0.8 : 0.6) * hctValue;
   const hbCalculation = hctValue / 3;
-  hemoglobinResult.innerHTML = `Result: HB = ${hbCalculation.toFixed(2)} g/dL`;
+
+  if (ageValue.trim() === '' || hctValue.trim() === '') {
+    hemoglobinResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    hemoglobinResult.innerHTML = `Result: HB = ${hbCalculation.toFixed(2)} g/dL`;
+  }
+  
 }
+
 const calculateRbc = () => {
   const hgbValue = document.getElementById("hgb").value;
   const rbcResult = document.getElementById("rbc-result");
   const rbcCalculation = (hgbValue / 3) * 1.1;
-  rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L`;
+
+  if (hgbValue.trim() === '') {
+    rbcResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L`;
+  }
+  
 };
 
 const calculateInb = () => {
@@ -262,14 +365,28 @@ const calculateInb = () => {
   const directBilirubin = document.getElementById("direct-bilirubin").value;
   const  indirectBilirubinResult = document.getElementById("inb-result");
   const  indirectBilirubin = totalBilirubin - directBilirubin;
-  indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} μmol/L`;
+
+  if (totalBilirubin.trim() === '' || directBilirubin.trim() === '') {
+    indirectBilirubinResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} μmol/L`;
+  }
+  
 }
 
 const convertToMetres = () => {
   const foot = document.getElementById("foot-value").value;
   const footResult = document.getElementById("foot-result");
   const footToMetres = foot * 0.3048;
-  footResult.innerHTML = `Result: ${foot} Ft = ${footToMetres.toFixed(2)} metres`;
+
+  if (foot.trim() === '') {
+    footResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    footResult.innerHTML = `Result: ${foot} Ft = ${footToMetres.toFixed(2)} metres`;
+  }
+  
 }
 
 const convertToFoot = () => {
@@ -296,19 +413,40 @@ const convertToFoot = () => {
     return `${feet}' ${inches}"`;
   }
 
-  metreResult.innerHTML = `Result: ${metre} metres = ${metreToFoot.toFixed(2)} Ft (${metersToFeetInches()})`;
+  if (metre.trim() === '') {
+    metreResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    metreResult.innerHTML = `Result: ${metre} metres = ${metreToFoot.toFixed(2)} Ft (${metersToFeetInches()})`;
+  }
+  
 }
 
 const convertCelsius = () => {
   const celsiusValue = document.getElementById("celsius-value").value;
   const celsiusResult = document.getElementById("celsius-result");
   const celsiusToFahrenheit = (celsiusValue * 9/5) + 32;
-  celsiusResult.innerHTML = `Result: ${celsiusValue}°C = ${celsiusToFahrenheit.toFixed(2)}°F`;
+
+  if (celsiusValue.trim() === '') {
+    celsiusResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    celsiusResult.innerHTML = `Result: ${celsiusValue}°C = ${celsiusToFahrenheit.toFixed(2)}°F`;
+  }
+  
 }
 
 const convertFahrenheit = () => {
   const fahrenheitValue = document.getElementById("fahrenheit-value").value;
   const fahrenheitResult = document.getElementById("fahrenheit-result");
   const fahrenheitToCelsius = (fahrenheitValue - 32) * 5/9;
-  fahrenheitResult.innerHTML = `Result: ${fahrenheitValue}°F = ${fahrenheitToCelsius.toFixed(2)}°C`;
+
+  if (fahrenheitValue.trim() === '') {
+    fahrenheitResult.innerHTML = '';
+    openErrorPopup();
+  } else {
+    fahrenheitResult.innerHTML = `Result: ${fahrenheitValue}°F = ${fahrenheitToCelsius.toFixed(2)}°C`;
+  }
+  
 }
+
