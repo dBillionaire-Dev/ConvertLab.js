@@ -13,7 +13,7 @@
 </head>
 <body>
    <main>
-    <!-- <div id="overlay"></div> -->
+
     <div class="overlay main" id="overlay">
         <header>
             <div id="logo-div">
@@ -83,15 +83,22 @@
 
     </div>
 
+    <div id="error-popup">
+        <h4>Please Complete Your Entries</h4>
+        <br>
+        <button onclick="closeErrorPopup()">OK</button>
+    </div>
+
     <div id="all-popup">
         <div class="popup" id="mmol-popup">
             <a class="close-modal" onclick="closePopup()">
                 <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
             <h2>mmol/L Conversion</h2><button type="submit" onclick="openMgdlPopup()">
                 <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
-            <form>
-                <input type="number" id="mmol-value" name="mmol" required placeholder="Enter mmol/L value" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMmol(); }">
+            <form id="form-container">
+                <input type="number" id="mmol-value" name="mmol" required placeholder="Enter glucose value in mmol/L" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMmol(); }">
                 <p id="mmol-result"></p>
+               
                 <input class="btn" id="mmol-btn" type="button" value="Convert" onclick="convertMmol()">
             </form>
         </div>
@@ -100,7 +107,7 @@
                 <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
             <h2>mg/dL Conversion</h2><button type="submit" onclick="reOpenMmolPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
             <form>
-                <input type="number" id="mgdl-value" name="mgdl" required placeholder="Enter mg/dL value" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMgdl(); }">
+                <input type="number" id="mgdl-value" name="mgdl" required placeholder="Enter glucose value in mg/dL" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMgdl(); }">
                 <p id="mgdl-result"></p>
                 <input class="btn" type="button" value="Convert" onclick="convertMgdl()">
             </form>
@@ -231,7 +238,7 @@
         <div class="popup" id="inb-popup">
             <a class="close-modal" onclick="closePopup()">
                 <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
-            <h2>Unconjugated (Indirect) Bilirubin</h2>
+            <h2>Unconjugated Bilirubin</h2>
             <form>
                 <input type="number" id="total-bilirubin" name="direct" required placeholder="Enter Total Bilirubin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateInb(); }">
                 <input type="number" id="direct-bilirubin" name="direct" required placeholder="Enter Direct Bilirubin value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateInb(); }">
