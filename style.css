@@ -160,17 +160,17 @@ main{
 #error-popup {
   visibility: hidden;
   position: absolute;
-  padding: 1.5rem 1rem;
+  padding: 1.2rem 0.5rem;
   font-style: italic;
   color: black;
   top: 40%;
-  right: 41%;
+  right: 39%;
   z-index: 20;
   border: 3px solid hsl(0, 100%, 74%);
   border-radius: 10px;
   background-color: #f9f9f9;
   width: 20%;
-  height: 23vh;
+  height: 25vh;
 }
 
 #error-popup button{
