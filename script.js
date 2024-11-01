@@ -209,15 +209,20 @@ const calculateLdl = () => {
 
 const calculateBmi = () => {
   const weightValue = document.getElementById("weight-value").value;
-  const heightValue = document.getElementById("height-value").value/100;
+  const heightValue = document.getElementById("height-value").value;
+  const height = heightValue/100;
   const bmiResult = document.getElementById("bmi-result");
-  const bmiCalculation = weightValue / (heightValue * heightValue);
+  const bmiCalculation = weightValue / (height * height);
+
+  console.log(`${weightValue} and ${heightValue}`);
 
   if (weightValue.trim() === '' || heightValue.trim() === '') {
     bmiResult.innerHTML = '';
     openErrorPopup();
+    console.log(openErrorPopup());
   } else {
     bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup>`;
+    console.log(bmiResult);
   }
 };
 
