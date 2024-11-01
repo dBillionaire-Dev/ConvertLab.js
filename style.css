@@ -20,14 +20,6 @@ main{
   flex-direction: column;
 }
 
-input, select{
-  border-radius: 10px;
-  background-color: #fff;
-  color:rgba(0, 0, 0, 0.65);
-  padding: 0.5rem 1rem;
-  margin: 1rem auto;
-}
-
 .popup button{
   padding: 5px 10px;
   background-color: #096d8e;
@@ -74,7 +66,7 @@ input, select{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
   color: black;
   border: 3px solid black;
   z-index: 100;
@@ -86,8 +78,16 @@ input, select{
               margin-top 300ms ease-in-out;
 }
 
-#ldl-popup, #hgb-popup, #litre-popup, #pcv-popup{
+#ldl-popup, #hgb-popup{
   height: 400px;
+}
+
+#litre-popup, #pcv-popup{
+  height: 450px;
+}
+
+#rbc-popup{
+  height: 250px;
 }
 
 .open-popup{
@@ -102,25 +102,33 @@ input, select{
   pointer-events: none; /* Prevent interaction with blurred content */
 }
 
+.error-blur{
+  filter: blur(500px);
+  pointer-events: none;
+}
+
 .custom-dropdown {
   position: relative;
   display: inline-block;
   border-radius: 10px;
+  width: 100%;
 }
 
 .selected {
-  padding: 0.5rem;
-  border: 1px solid black;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 10px;
+  border: 1.6px solid black;
   color:rgba(0, 0, 0, 0.65);
 }
 
 .options {
   display: none;
+  padding: 0.5rem 1rem;
   position: absolute;
+  left: 35%;
   background: white;
-  border: 1px solid black;
+  border: 2px solid black;
   z-index: 1;
   border-radius: 10px;
 }
@@ -130,12 +138,49 @@ input, select{
 }
 
 .options div {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
 .options div:hover {
-  background-color: #f1f1f1;
+  background-color: #f9f9f9;
+}
+
+.popup input, .popup .selected{
+  display: block;
+  margin: 0.8rem auto;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  width: 100%;
+  border-color: black;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+#error-popup {
+  visibility: hidden;
+  position: absolute;
+  padding: 1.5rem 1rem;
+  font-style: italic;
+  color: black;
+  top: 40%;
+  right: 41%;
+  z-index: 20;
+  border: 3px solid hsl(0, 100%, 74%);
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  width: 20%;
+  height: 23vh;
+}
+
+#error-popup button{
+  background-color: #096d8e;
+  width: 100px;
+  border-radius: 3px;
+  font-size: 22px;
+  padding: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .overlay {
@@ -208,7 +253,7 @@ header #h1-div{
 }
 
 .mch, .mchc, .mcv, .pcv{
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
 }
 
 .temperature{
@@ -313,6 +358,16 @@ button.bmi, button.pcv, button.height{
     top:-1%;
     left: 95%;
   }
+
+  #error-popup {
+    padding: 1rem;
+    top: 40%;
+    left: 15%;
+    z-index: 20;
+    width: 250px;
+    height: 150px;
+  }
+  
 }
 
 /* Mobile: Landscape view */
@@ -367,6 +422,14 @@ button.bmi, button.pcv, button.height{
     height: 100px;
     padding: 1rem;
   }
+
+  #error-popup {
+    top: 30%;
+    left: 33%;
+    width: 250px;
+    height: 150px;
+  }
+  
 }
 
 /* Tablets Pro */
@@ -419,6 +482,22 @@ button.bmi, button.pcv, button.height{
     height: 10rem;
     padding: 1rem;
   }
+
+  #error-popup {
+    top: 32%;
+    left: 35%;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 800px) and (max-width: 1204px) {
+  #error-popup {
+    top: 32%;
+    left: 38%;
+    width: 300px;
+    height: 200px;
+  }
 }
 
 /* Tablets MIni */
@@ -431,6 +510,13 @@ button.bmi, button.pcv, button.height{
   .convert-item{
     width: 13rem;
     height: 9rem;
+  }
+
+  #error-popup {
+    top: 35%;
+    left: 27%;
+    width: 350px;
+    height: 200px;
   }
 }
 
