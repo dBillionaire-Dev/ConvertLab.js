@@ -79,15 +79,15 @@ main{
 }
 
 #ldl-popup, #hgb-popup{
-  height: 400px;
+  height: 415px;
 }
 
 #litre-popup, #pcv-popup{
-  height: 450px;
+  height: 460px;
 }
 
 #rbc-popup{
-  height: 250px;
+  height: 260px;
 }
 
 .open-popup{
