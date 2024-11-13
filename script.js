@@ -209,9 +209,9 @@ const calculateLdl = () => {
   if (totalCholesterolValue.trim() === '' || hdlCholesterolValue.trim() === '' || triglycerideValue.trim() === '') {
     ldlResult.innerHTML = '';
     openErrorPopup();
-  } else if (ldlCalculation > 153) {
+  } else if (ldlCalculation > 150) {
     ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L <strong style="color:red">(HIGH)</strong>`;
-  } else if (ldlCalculation < 82) {
+  } else if (ldlCalculation < 50) {
     ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L <strong style="color:blue">(LOW)</strong>`;
   } else {
     ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L`;
@@ -255,7 +255,7 @@ const calculateMchc = () => {
     openErrorPopup();
   } else if (mchcCalculation > 36) {
     mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL <strong style="color:red">(HIGH)</strong>`;
-  } else if (mchcCalculation < 32) {
+  } else if (mchcCalculation < 31.5) {
     mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
       mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL`;
@@ -272,7 +272,7 @@ const calculateMch = () => {
   if (hbValue.trim() === '' || rbcValue.trim() === '') {
     mchResult.innerHTML = '';
     openErrorPopup();
-  } else if (mchCalculation > 33) {
+  } else if (mchCalculation > 32) {
     mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg <strong style="color:red">(HIGH)</strong>`;
   } else if (mchCalculation < 27) {
     mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg <strong style="color:blue">(LOW)</strong>`;
@@ -290,7 +290,7 @@ const calculateMcv  = () => {
   if (hctValue.trim() === '' || rbcFigure.trim() === '') {
     mcvResult.innerHTML = '';
     openErrorPopup();
-  } else if (mcvCalculation > 100) {
+  } else if (mcvCalculation > 98) {
     mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl <strong style="color:red">(HIGH)</strong>`;
   } else if (mcvCalculation < 80) {
     mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl <strong style="color:blue">(LOW)</strong>`;
@@ -391,7 +391,7 @@ const calculateRbc = () => {
     openErrorPopup();
   } else if (rbcCalculation > 5.4) {
     rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L <strong style="color:red">(HIGH)</strong>`;
-  } else if (rbcCalculation < 4.5) {
+  } else if (rbcCalculation < 4.3) {
     rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L <strong style="color:blue">(LOW)</strong>`;
   } else {
     rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L`;
