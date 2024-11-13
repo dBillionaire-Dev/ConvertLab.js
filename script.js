@@ -170,6 +170,10 @@ const convertMmol = () => {
   if (mmolValue.trim() === '') {
     mmolResult.innerHTML = '';
     openErrorPopup();
+  } else if (mmolToMgdl > 180) {
+    mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL <strong style="color:red">(HIGH)</strong>`;
+  } else if (mmolToMgdl < 70) {
+    mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
     mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL`;
   }
@@ -184,6 +188,10 @@ const convertMgdl = () => {
   if (mgdlValue.trim() === '') {
     mgdlResult.innerHTML = '';
     openErrorPopup();
+  } else if (mgdlToMmol > 10) {
+    mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L <strong style="color:red">(HIGH)</strong>`;
+  } else if (mgdlToMmol < 3.89) {
+    mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L <strong style="color:blue">(LOW)</strong>`;
   } else {
   mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L`;
   }
@@ -201,6 +209,10 @@ const calculateLdl = () => {
   if (totalCholesterolValue.trim() === '' || hdlCholesterolValue.trim() === '' || triglycerideValue.trim() === '') {
     ldlResult.innerHTML = '';
     openErrorPopup();
+  } else if (ldlCalculation > 153) {
+    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L <strong style="color:red">(HIGH)</strong>`;
+  } else if (ldlCalculation < 82) {
+    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L <strong style="color:blue">(LOW)</strong>`;
   } else {
     ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L`;
   }
@@ -220,6 +232,12 @@ const calculateBmi = () => {
     bmiResult.innerHTML = '';
     openErrorPopup();
     console.log(openErrorPopup());
+  } else if (bmiCalculation < 18) {
+    bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup> <strong style="color:blue">(LOW)</strong>`;
+    console.log(bmiResult);
+  } else if (bmiCalculation > 25) {
+    bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup> <strong style="color:red">(HIGH)</strong>`;
+    console.log(bmiResult);
   } else {
     bmiResult.innerHTML = `Result: BMI = ${bmiCalculation.toFixed(2)} kg/m<sup>2</sup>`;
     console.log(bmiResult);
@@ -235,6 +253,10 @@ const calculateMchc = () => {
   if (hgbValue.trim() === '' || pcvValue.trim() === '') {
     mchcResult.innerHTML = '';
     openErrorPopup();
+  } else if (mchcCalculation > 36) {
+    mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL <strong style="color:red">(HIGH)</strong>`;
+  } else if (mchcCalculation < 32) {
+    mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
       mchcResult.innerHTML = `Result: MCHC = ${mchcCalculation.toFixed(2)} g/dL`;
   }
@@ -250,6 +272,10 @@ const calculateMch = () => {
   if (hbValue.trim() === '' || rbcValue.trim() === '') {
     mchResult.innerHTML = '';
     openErrorPopup();
+  } else if (mchCalculation > 33) {
+    mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg <strong style="color:red">(HIGH)</strong>`;
+  } else if (mchCalculation < 27) {
+    mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg <strong style="color:blue">(LOW)</strong>`;
   } else {
    mchResult.innerHTML = `Result: MCH = ${mchCalculation.toFixed(2)} pg`;
   }
@@ -264,6 +290,10 @@ const calculateMcv  = () => {
   if (hctValue.trim() === '' || rbcFigure.trim() === '') {
     mcvResult.innerHTML = '';
     openErrorPopup();
+  } else if (mcvCalculation > 100) {
+    mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl <strong style="color:red">(HIGH)</strong>`;
+  } else if (mcvCalculation < 80) {
+    mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl <strong style="color:blue">(LOW)</strong>`;
   } else {
     mcvResult.innerHTML = `Result: MCV = ${mcvCalculation.toFixed(2)} fl`;
   }
@@ -359,6 +389,10 @@ const calculateRbc = () => {
   if (hgbValue.trim() === '') {
     rbcResult.innerHTML = '';
     openErrorPopup();
+  } else if (rbcCalculation > 5.4) {
+    rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L <strong style="color:red">(HIGH)</strong>`;
+  } else if (rbcCalculation < 4.5) {
+    rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L <strong style="color:blue">(LOW)</strong>`;
   } else {
     rbcResult.innerHTML = `Result: RBC = ${rbcCalculation.toFixed(2)} x10<sup>12</sup>/L`;
   }
@@ -374,8 +408,12 @@ const calculateInb = () => {
   if (totalBilirubin.trim() === '' || directBilirubin.trim() === '') {
     indirectBilirubinResult.innerHTML = '';
     openErrorPopup();
+  } else if (indirectBilirubin > 0.80) {
+    indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} mg/dL <strong style="color:red">(HIGH)</strong>`;
+  } else if (indirectBilirubin < 0.20) {
+    indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} mg/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
-    indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} μmol/L`;
+    indirectBilirubinResult.innerHTML = `Result: Indirect Bilirubin = ${indirectBilirubin.toFixed(2)} mg/dL`;
   }
   
 }
@@ -454,4 +492,3 @@ const convertFahrenheit = () => {
   }
   
 }
-
