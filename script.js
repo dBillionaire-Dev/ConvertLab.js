@@ -300,85 +300,170 @@ const calculateMcv  = () => {
   
 }
 
-const popups = document.querySelectorAll('.popup');
-let selectedGenderValue = null;
-
-popups.forEach(popup => {
-    const selected = document.querySelector('.selected');
-    const optionsContainer = document.querySelector('.options');
-    const optionsList = document.querySelectorAll('.options div');
-
-    selected.addEventListener('click', () => {
-        optionsContainer.classList.toggle('active');
-    });
-
-    optionsList.forEach(option => {
-        option.addEventListener('click', () => {
-            selected.innerHTML = option.innerHTML; // Set the selected value
-            selectedGenderValue = option.innerHTML;
-            optionsContainer.classList.remove('active'); // Close the dropdown
-            console.log(selectedGenderValue);
-        });
-    });
-});
 
 const convertPercentage = () => {
-  let pcvGenderValue = selectedGenderValue;
+  const maleGender = document.getElementById('male').checked;
+  const femaleGender = document.getElementById('female').checked;
   let pcvAgeValue = document.getElementById("pcv-age").value;
   let percentageValue = document.getElementById("percentage-pcv").value;
   let percentageResult = document.getElementById("percentage-result");
   let percentageCalculation = percentageValue / 100;
 
-  // if  (pcvGenderValue === "1"  && pcvAgeValue >= 18) {
-  //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
-  //   // if (percentageCalculation >= 0.40 && percentageCalculation <= 0.54) {
-  //   //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
-  //   // } else if (percentageCalculation > 0.54){
-  //   //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l (HIGH)`;
-  //   // } else {
-  //   //   percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l (LOW)`;
-  //   // }
-  // }
-  if (percentageValue.trim() === '' || pcvAgeValue.trim() === '') {
-    percentageResult.innerHTML = '';
-    openErrorPopup();
-  } else {
-    percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  // Check if all input fields are empty and no radio button is checked
+  if (percentageValue.trim() === '' && pcvAgeValue.trim() === '' && !maleGender && !femaleGender) {
+      percentageResult.innerHTML = '';
+      openErrorPopup(); // Call the function to show the error popup
+      return; // Exit the function early
   }
-  
+
+  if (maleGender && pcvAgeValue >= 18) {
+      if (percentageCalculation >= 0.40 && percentageCalculation <= 0.54) {
+          percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+      } else if (percentageCalculation > 0.54) {
+          percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
+      } else {
+          percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
+      }
+  } else if (femaleGender && pcvAgeValue >= 18) {
+    if (percentageCalculation >= 0.36 && percentageCalculation <= 0.46) {
+        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+    } else if (percentageCalculation > 0.46) {
+        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
+    } else {
+        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
+    }
+} else if (pcvAgeValue < 18 && pcvAgeValue >= 2) {
+  if (percentageCalculation >= 0.34 && percentageCalculation <= 0.40) {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  } else if (percentageCalculation > 0.40) {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
+  } else {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
+  }
+} else if (pcvAgeValue < 2) {
+  if (percentageCalculation >= 0.44 && percentageCalculation <= 0.54) {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  } else if (percentageCalculation > 0.54) {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
+  } else {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
+  }
+} else if (percentageValue.trim() === '' || pcvAgeValue.trim() === '' && !maleGender && !femaleGender) {
+      percentageResult.innerHTML = '';
+      openErrorPopup(); // Call the function to show the error popup
+  } else {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  }
 }
 
 const convertLitre = () => {
-  const litreGenderValue = document.getElementById("litre-gender").value;
-  const litreAgeValue = document.getElementById("litre-age").value;
-  const litreValue = document.getElementById("litre-pcv").value;
-  const litreResult = document.getElementById("litre-result");
-  const litreCalculation = litreValue * 100;
+  const litreMaleGender = document.getElementById('litre-male').checked;
+  const litreFemaleGender = document.getElementById('litre-female').checked;
+  let litreAgeValue = document.getElementById("litre-age").value;
+  let litreValue = document.getElementById("litre-pcv").value;
+  let litreResult = document.getElementById("litre-result");
+  let litreCalculation = litreValue * 100;
 
-  if (litreValue.trim() === '' || litreAgeValue.trim() === '') {
-    litreResult.innerHTML = '';
-    openErrorPopup();
-  } else {
-    litreResult.innerHTML = `Result: ${litreValue} Litre = ${litreCalculation.toFixed(2)}%`;
+  // Check if all input fields are empty and no radio button is checked
+  if (litreValue.trim() === '' && litreAgeValue.trim() === '' && !litreMaleGender && !litreFemaleGender) {
+      litreResult.innerHTML = '';
+      openErrorPopup(); // Call the function to show the error popup
+      return; // Exit the function early
   }
-  
+
+  if (litreMaleGender && litreAgeValue >= 18) {
+      if (litreCalculation >= 40 && litreCalculation <= 54) {
+          litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} %`;
+      } else if (litreCalculation > 54) {
+          litreResult.innerHTML = `Result: ${litreValue}% = ${litreCalculation.toFixed(1)} % <strong style="color:red">(HIGH)</strong>`;
+      } else {
+          litreResult.innerHTML = `Result: ${litreValue}% = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
+      }
+  } else if (litreFemaleGender && litreAgeValue >= 18) {
+    if (litreCalculation >= 36 && litreCalculation <= 46) {
+        litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} %`;
+    } else if (litreCalculation > 46) {
+        litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:red">(HIGH)</strong>`;
+    } else {
+        litreResult.innerHTML = `Result: ${litreValue} l/l = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
+    }
+} else if (litreAgeValue < 18 && litreAgeValue >= 2) {
+  if (litreCalculation >= 34 && litreCalculation <= 40) {
+      litreResult.innerHTML = `Result: ${litreValue} l/l = ${litreCalculation.toFixed(1)} %`;
+  } else if (litreCalculation > 40) {
+      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:red">(HIGH)</strong>`;
+  } else {
+      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
+  }
+} else if (litreAgeValue < 2) {
+  if (litreCalculation >= 44 && litreCalculation <= 54) {
+      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} %`;
+  } else if (litreCalculation > 54) {
+      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:red">(HIGH)</strong>`;
+  } else {
+      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
+  }
+} else if (litreValue.trim() === '' || litreAgeValue.trim() === '' && !litreMaleGender && !litreFemaleGender) {
+      litreResult.innerHTML = '';
+      openErrorPopup(); // Call the function to show the error popup
+  } else {
+      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} %`;
+  }
 }
 
 const calculateHb = () => {
-  const genderValue = document.getElementById("gender").value;
+  const hgbMale = document.getElementById("hgb-male").checked;
+  const hgbFemale = document.getElementById("hgb-female").checked;
   const ageValue = document.getElementById("age").value;
   const hctValue = document.getElementById("hemoglobin").value;
   const hemoglobinResult = document.getElementById("hemoglobin-result");
-  //const hbCalculation = (140 - ageValue) * (genderValue === "male" ? 0.8 : 0.6) * hctValue;
   const hbCalculation = hctValue / 3;
 
-  if (ageValue.trim() === '' || hctValue.trim() === '') {
-    hemoglobinResult.innerHTML = '';
-    openErrorPopup();
-  } else {
-    hemoglobinResult.innerHTML = `Result: HB = ${hbCalculation.toFixed(2)} g/dL`;
+  // Check if all input fields are empty and no radio button is checked
+  if (hctValue.trim() === '' && ageValue.trim() === '' && !hgbMale && !hgbFemale) {
+      hemoglobinResult.innerHTML = '';
+      openErrorPopup(); // Call the function to show the error popup
+      return; // Exit the function early
   }
-  
+
+  if (hgbMale && ageValue >= 18) {
+      if (hbCalculation >= 13 && hbCalculation <= 18) {
+          hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL`;
+      } else if (hbCalculation > 18) {
+          hemoglobinResult.innerHTML = `Result: ${hctValue}g/dL = ${hbCalculation.toFixed(1)} g/dL <strong style="color:red">(HIGH)</strong>`;
+      } else {
+          hemoglobinResult.innerHTML = `Result: ${hctValue}g/dL = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
+      }
+  } else if (hgbFemale && ageValue >= 18) {
+    if (hbCalculation >= 12 && hbCalculation <= 15) {
+        hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL`;
+    } else if (hbCalculation > 15) {
+        hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:red">(HIGH)</strong>`;
+    } else {
+        hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
+    }
+} else if (ageValue < 18 && ageValue >= 2) {
+  if (hbCalculation >= 11.5 && hbCalculation <= 13.5) {
+      hemoglobinResult.innerHTML = `Result: ${hctValue} % = ${hbCalculation.toFixed(1)} g/dL`;
+  } else if (hbCalculation > 13.5) {
+      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:red">(HIGH)</strong>`;
+  } else {
+      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
+  }
+} else if (ageValue < 2) {
+  if (hbCalculation >= 13.5 && hbCalculation <= 18) {
+      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL`;
+  } else if (hbCalculation > 18) {
+      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:red">(HIGH)</strong>`;
+  } else {
+      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
+  }
+} else if (hctValue.trim() === '' || ageValue.trim() === '' && !hgbMale && !hgbFemale) {
+      hemoglobinResult.innerHTML = '';
+      openErrorPopup(); // Call the function to show the error popup
+  } else {
+      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL`;
+  }
 }
 
 const calculateRbc = () => {
