@@ -59,7 +59,7 @@ main{
 
 .popup{
   width: 500px;
-  height: 320px;
+  height: 300px;
   background-color: #f9f9f9;
   border-radius: 10px;
   position: absolute;
@@ -131,6 +131,7 @@ main{
   border: 2px solid black;
   z-index: 1;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .options.active {
@@ -293,6 +294,13 @@ button.bmi, button.pcv, button.height{
   background-color: rgb(111, 73, 3);
 }
 
+span{
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 40%;
+}
+
 /* Mobile: Portrait View */
 @media (orientation: portrait) and (max-width: 480px) {
 
@@ -366,6 +374,10 @@ button.bmi, button.pcv, button.height{
     z-index: 20;
     width: 250px;
     height: 150px;
+  }
+
+  span{
+    width: 55%;
   }
   
 }
