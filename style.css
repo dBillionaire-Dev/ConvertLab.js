@@ -78,12 +78,12 @@ main{
               margin-top 300ms ease-in-out;
 }
 
-#ldl-popup, #hgb-popup{
+#ldl-popup{
   height: 415px;
 }
 
-#litre-popup, #pcv-popup{
-  height: 460px;
+#litre-popup, #pcv-popup, #hgb-popup{
+  height: 405px;
 }
 
 #rbc-popup{
@@ -105,46 +105,6 @@ main{
 .error-blur{
   filter: blur(500px);
   pointer-events: none;
-}
-
-.custom-dropdown {
-  position: relative;
-  display: inline-block;
-  border-radius: 10px;
-  width: 100%;
-}
-
-.selected {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 10px;
-  border: 1.6px solid black;
-  color:rgba(0, 0, 0, 0.65);
-}
-
-.options {
-  display: none;
-  padding: 0.5rem 1rem;
-  position: absolute;
-  left: 35%;
-  background: white;
-  border: 2px solid black;
-  z-index: 1;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.options.active {
-  display: block;
-}
-
-.options div {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.options div:hover {
-  background-color: #f9f9f9;
 }
 
 .popup input, .popup .selected{
