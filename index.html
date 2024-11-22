@@ -176,13 +176,13 @@
                     <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
                 <form>
                     <input type="number" name="age" id="pcv-age" required placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
-                    <div class="custom-dropdown" id="pcv-gender">
-                        <div class="selected">Select Gender</div>
-                        <div class="options">
-                            <div data-value="1"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</div>
-                            <div data-value="2"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</div>
-                        </div>
-                    </div>
+                    <span class="gender-span">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <p style="display: inline-block"> Male</p></label>
+
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <p style="display: inline">Female</p></label>
+                    </span>
                     <input type="number" id="percentage-pcv" name="pcv" required placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
                     <p id="percentage-result"></p>
                     <input class="btn" type="button" value="Convert" onclick="convertPercentage()">
@@ -194,13 +194,13 @@
                 <h2>PCV (l/l) Conversion</h2><button type="submit" onclick="reOpenPcvPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
                 <form>
                     <input type="number" name="age" id="litre-age" required placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
-                    <div class="custom-dropdown" id="litre-gender">
-                        <div class="selected">Select Gender</div>
-                        <div class="options">
-                            <div data-value="1"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</div>
-                            <div data-value="2"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</div>
-                        </div>
-                    </div>
+                    <span class="gender-span">
+                        <input type="radio" id="litre-male" name="litre-gender" value="male">
+                        <label for="litre-male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <p style="display: inline-block"> Male</p></label>
+
+                        <input type="radio" id="litre-female" name="litre-gender" value="female">
+                        <label for="litre-female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <p style="display: inline">Female</p></label>
+                    </span>
                     <input type="number" id="litre-pcv" name="litre" required placeholder="Enter PCV (l/l) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
                     <p id="litre-result"></p>
                     <input class="btn" type="button" value="Convert" onclick="convertLitre()">
@@ -213,13 +213,13 @@
             <h2>Hemoglobin Concentration</h2>
             <form>
                 <input type="number" name="age" id="age" required placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
-                <div class="custom-dropdown" id="gender">
-                    <div class="selected">Select Gender</div>
-                    <div class="options">
-                        <div data-value="1"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> Male</div>
-                        <div data-value="2"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> Female</div>
-                    </div>
-                </div>
+                <span class="gender-span">
+                    <input type="radio" id="hgb-male" name="hgb-gender" value="male">
+                    <label for="hgb-male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <p style="display: inline-block"> Male</p></label>
+
+                    <input type="radio" id="hgb-female" name="hgb-gender" value="female">
+                    <label for="hgb-female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <p style="display: inline">Female</p></label>
+                </span>
                 <input type="number" id="hemoglobin" name="pcv" required placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
                 <p id="hemoglobin-result"></p>
                 <input class="btn" type="button" value="Get Hb Concentration" onclick="calculateHb()">
