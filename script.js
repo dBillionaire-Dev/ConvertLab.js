@@ -357,43 +357,41 @@ const convertPercentage = () => {
   }
 
   if (maleGender && pcvAgeValue >= 18) {
-      if (percentageCalculation >= 0.40 && percentageCalculation <= 0.54) {
-          percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+      if (percentageCalculation < 0.40) {
+        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
       } else if (percentageCalculation > 0.54) {
           percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
       } else {
-          percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
+        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
       }
   } else if (femaleGender && pcvAgeValue >= 18) {
-    if (percentageCalculation >= 0.36 && percentageCalculation <= 0.46) {
-        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+    if (percentageCalculation < 0.36) {
+      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
     } else if (percentageCalculation > 0.46) {
         percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
     } else {
-        percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
-    }
-} else if (pcvAgeValue < 18 && pcvAgeValue >= 2) {
-  if (percentageCalculation >= 0.34 && percentageCalculation <= 0.40) {
       percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+    }
+} else if (pcvAgeValue < 18 && pcvAgeValue >= 2 && (maleGender || femaleGender)) {
+  if (percentageCalculation < 0.34) {
+       percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
   } else if (percentageCalculation > 0.40) {
       percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
   } else {
-      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
-  }
-} else if (pcvAgeValue < 2) {
-  if (percentageCalculation >= 0.44 && percentageCalculation <= 0.54) {
       percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  }
+} else if (pcvAgeValue < 2 && (maleGender || femaleGender)) {
+  if (percentageCalculation < 0.44) {
+    percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
   } else if (percentageCalculation > 0.54) {
       percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:red">(HIGH)</strong>`;
   } else {
-      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
+    percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
   }
-  } else if (!maleGender && pcvAgeValue !== '' && pcvValue !== '') {
-      openErrorPopup();
-  } else if (!femaleGender && pcvAgeValue !== '' && pcvValue !== ''){
-    openErrorPopup();
+  } else {
+    openErrorPopup(); // Call the function to show the error popup
   }
-}
+};
 
 const convertLitre = () => {
   const litreMaleGender = document.getElementById('litre-male').checked;
@@ -404,7 +402,7 @@ const convertLitre = () => {
   let litreCalculation = litreValue * 100;
 
   // Check if all input fields are empty and no radio button is checked
-  if (litreValue.trim() === '' && litreAgeValue.trim() === '' && !litreMaleGender && !litreFemaleGender) {
+  if (litreValue.trim() === '' && litreAgeValue.trim() === '' && (!litreMaleGender && !litreFemaleGender)) {
       litreResult.innerHTML = '';
       openErrorPopup(); // Call the function to show the error popup
       return; // Exit the function early
@@ -426,7 +424,7 @@ const convertLitre = () => {
     } else {
         litreResult.innerHTML = `Result: ${litreValue} l/l = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
     }
-} else if (litreAgeValue < 18 && litreAgeValue >= 2) {
+} else if (litreAgeValue < 18 && litreAgeValue >= 2 && (litreMaleGender || litreFemaleGender)) {
   if (litreCalculation >= 34 && litreCalculation <= 40) {
       litreResult.innerHTML = `Result: ${litreValue} l/l = ${litreCalculation.toFixed(1)} %`;
   } else if (litreCalculation > 40) {
@@ -434,7 +432,7 @@ const convertLitre = () => {
   } else {
       litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
   }
-} else if (litreAgeValue < 2) {
+} else if (litreAgeValue < 2 && (litreMaleGender || litreFemaleGender)) {
   if (litreCalculation >= 44 && litreCalculation <= 54) {
       litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} %`;
   } else if (litreCalculation > 54) {
@@ -442,11 +440,9 @@ const convertLitre = () => {
   } else {
       litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} % <strong style="color:blue">(LOW)</strong>`;
   }
-} else if (litreValue.trim() === '' || litreAgeValue.trim() === '' && !litreMaleGender && !litreFemaleGender) {
+} else {
       litreResult.innerHTML = '';
       openErrorPopup(); // Call the function to show the error popup
-  } else {
-      litreResult.innerHTML = `Result: ${litreValue}l/l = ${litreCalculation.toFixed(1)} %`;
   }
 }
 
@@ -481,7 +477,7 @@ const calculateHb = () => {
     } else {
         hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
     }
-} else if (ageValue < 18 && ageValue >= 2) {
+} else if (ageValue < 18 && ageValue >= 2 && (hgbMale || hgbFemale)) {
   if (hbCalculation >= 11.5 && hbCalculation <= 13.5) {
       hemoglobinResult.innerHTML = `Result: ${hctValue} % = ${hbCalculation.toFixed(1)} g/dL`;
   } else if (hbCalculation > 13.5) {
@@ -489,7 +485,7 @@ const calculateHb = () => {
   } else {
       hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
   }
-} else if (ageValue < 2) {
+} else if (ageValue < 2 && (hgbMale || hgbFemale)) {
   if (hbCalculation >= 13.5 && hbCalculation <= 18) {
       hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL`;
   } else if (hbCalculation > 18) {
@@ -497,11 +493,9 @@ const calculateHb = () => {
   } else {
       hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL <strong style="color:blue">(LOW)</strong>`;
   }
-} else if (hctValue.trim() === '' || ageValue.trim() === '' && !hgbMale && !hgbFemale) {
+} else {
       hemoglobinResult.innerHTML = '';
       openErrorPopup(); // Call the function to show the error popup
-  } else {
-      hemoglobinResult.innerHTML = `Result: ${hctValue}% = ${hbCalculation.toFixed(1)} g/dL`;
   }
 }
 
