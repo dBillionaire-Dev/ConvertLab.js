@@ -127,9 +127,13 @@ const closePopup = () => {
   const popups = document.querySelectorAll('.popup');
     popups.forEach(popup => {
         popup.classList.remove("open-popup");
-        const inputs = popup.querySelectorAll('input[type="number"], input[type="text"]');
+        const inputs = popup.querySelectorAll('input[type="number"], input[type="text"], input[type="radio"]');
         inputs.forEach(input => {
-            input.value = ''; // Clear the input value
+          if (input.type === 'radio') {
+            input.checked = false; // Unselect radio buttons
+        } else {
+            input.value = ''; // Clear the input value for number and text fields
+        }
         });
         const displays = popup.querySelectorAll('p');
         displays.forEach(p => {
@@ -166,34 +170,70 @@ const convertMmol = () => {
   const mmolValue = document.getElementById("mmol-value").value;
   const mmolResult = document.getElementById("mmol-result");
   const mmolToMgdl = (mmolValue * 18).toFixed(2);
-  
-  if (mmolValue.trim() === '') {
+  const random = document.getElementById('random').checked;
+  const fasting = document.getElementById('fasting').checked;
+
+  // Check if all input fields are empty and no radio button is checked
+  if (mmolValue.trim() === '' && !random && !fasting) {
     mmolResult.innerHTML = '';
-    openErrorPopup();
-  } else if (mmolToMgdl > 180) {
+    openErrorPopup(); // Call the function to show the error popup
+    return; // Exit the function early
+  }
+
+  if (random) {
+    if (mmolToMgdl > 180) {
+      mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL <strong style="color:red">(HIGH)</strong>`;
+    } else if (mmolToMgdl < 70) {
+      mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL <strong style="color:blue">(LOW)</strong>`;
+    } else {
+      mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL`;
+    }
+  } else if (fasting) {
+  if (mmolToMgdl > 120) {
     mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL <strong style="color:red">(HIGH)</strong>`;
   } else if (mmolToMgdl < 70) {
     mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
     mmolResult.innerHTML = `Result: ${mmolValue} mmol/L = ${mmolToMgdl} mg/dL`;
   }
-  
+  } else{
+    openErrorPopup(); // Call the function to show the error popup
+  }
+
 };
 
 const convertMgdl = () => {
   const mgdlValue = document.getElementById("mgdl-value").value;
   const mgdlResult = document.getElementById("mgdl-result");
   const mgdlToMmol = (mgdlValue / 18).toFixed(2);
+  const mgdlRandom = document.getElementById('mgdl-random').checked;
+  const mgdlFasting = document.getElementById('mgdl-fasting').checked;
 
-  if (mgdlValue.trim() === '') {
-    mgdlResult.innerHTML = '';
-    openErrorPopup();
-  } else if (mgdlToMmol > 10) {
-    mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L <strong style="color:red">(HIGH)</strong>`;
+  // Check if all input fields are empty and no radio button is checked
+  if (mgdlValue.trim() === '' && !mgdlRandom && !mgdlFasting) {
+    mmolResult.innerHTML = '';
+    openErrorPopup(); // Call the function to show the error popup
+    return; // Exit the function early
+  }
+
+  if (mgdlRandom) {
+    if (mgdlToMmol > 10) {
+      mgdlResult.innerHTML = `Result: ${mgdlValue} mmol/L = ${mgdlToMmol} mg/dL <strong style="color:red">(HIGH)</strong>`;
+    } else if (mgdlToMmol < 3.89) {
+      mgdlResult.innerHTML = `Result: ${mgdlValue} mmol/L = ${mgdlToMmol} mg/dL <strong style="color:blue">(LOW)</strong>`;
+    } else {
+      mgdlResult.innerHTML = `Result: ${mgdlValue} mmol/L = ${mgdlToMmol} mg/dL`;
+    }
+  } else if (mgdlFasting) {
+  if (mgdlToMmol > 6.67) {
+    mgdlResult.innerHTML = `Result: ${mgdlValue} mmol/L = ${mgdlToMmol} mg/dL <strong style="color:red">(HIGH)</strong>`;
   } else if (mgdlToMmol < 3.89) {
-    mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L <strong style="color:blue">(LOW)</strong>`;
+    mgdlResult.innerHTML = `Result: ${mgdlValue} mmol/L = ${mgdlToMmol} mg/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
-  mgdlResult.innerHTML = `Result: ${mgdlValue} mg/dL = ${mgdlToMmol} mmol/L`;
+    mgdlResult.innerHTML = `Result: ${mgdlValue} mmol/L = ${mgdlToMmol} mg/dL`;
+  }
+  } else{
+    openErrorPopup(); // Call the function to show the error popup
   }
 
 };
@@ -348,11 +388,10 @@ const convertPercentage = () => {
   } else {
       percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l <strong style="color:blue">(LOW)</strong>`;
   }
-} else if (percentageValue.trim() === '' || pcvAgeValue.trim() === '' && !maleGender && !femaleGender) {
-      percentageResult.innerHTML = '';
-      openErrorPopup(); // Call the function to show the error popup
-  } else {
-      percentageResult.innerHTML = `Result: ${percentageValue}% = ${percentageCalculation.toFixed(2)} l/l`;
+  } else if (!maleGender && pcvAgeValue !== '' && pcvValue !== '') {
+      openErrorPopup();
+  } else if (!femaleGender && pcvAgeValue !== '' && pcvValue !== ''){
+    openErrorPopup();
   }
 }
 
