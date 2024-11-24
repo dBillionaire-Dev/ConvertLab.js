@@ -29,7 +29,7 @@
         <div id="conversion-container" onkeydown="if (event.key === 'Escape') { closePopup(); }">
 
             <div>
-                <button class="mmol convert-item" type="submit" onclick="openMmolPopup()"><h3>mmol/L <br>to <br>mg/dL</h3></button>     
+                <button class="mmol convert-item" type="submit" onclick="openMmolPopup()"><h4>Glucose<br>Conversion</h4></button>     
             </div>
 
             <div>
@@ -96,6 +96,13 @@
             <h2>mmol/L Conversion</h2><button type="submit" onclick="openMgdlPopup()">
                 <i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
             <form id="form-container">
+                <span class="mmol-time-span">
+                    <input type="radio" id="random" name="time" value="random">
+                    <label for="random" class="radio-label" style="display: inline-flex; align-items: center;"><h5 style="display: inline-block">Random</h5></label>
+
+                    <input type="radio" id="fasting" name="time" value="fasting">
+                    <label for="fasting" class="radio-label" style="display: inline-flex; align-items: center;"><h5 style="display: inline">Fasting</h5></label>
+                </span>
                 <input type="number" id="mmol-value" name="mmol" required placeholder="Enter glucose value in mmol/L" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMmol(); }">
                 <p id="mmol-result"></p>
                
@@ -107,6 +114,13 @@
                 <i class="fa-solid fa-circle-xmark fa-xl" style="color: #e62f0f;"></i></a>
             <h2>mg/dL Conversion</h2><button type="submit" onclick="reOpenMmolPopup()"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" style="color: #111213;"></i></button>
             <form>
+                <span class="mgdl-time-span">
+                    <input type="radio" id="mgdl-random" name="time" value="random">
+                    <label for="mgdl-random" class="radio-label" style="display: inline-flex; align-items: center;"><h5 style="display: inline-block"> Random</h5></label>
+
+                    <input type="radio" id="mgdl-fasting" name="time" value="fasting">
+                    <label for="mgdl-fasting" class="radio-label" style="display: inline-flex; align-items: center;"><h5 style="display: inline">Fasting</h5></label>
+                </span>
                 <input type="number" id="mgdl-value" name="mgdl" required placeholder="Enter glucose value in mg/dL" onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertMgdl(); }">
                 <p id="mgdl-result"></p>
                 <input class="btn" type="button" value="Convert" onclick="convertMgdl()">
@@ -178,10 +192,10 @@
                     <input type="number" name="age" id="pcv-age" required placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
                     <span class="gender-span">
                         <input type="radio" id="male" name="gender" value="male">
-                        <label for="male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <p style="display: inline-block"> Male</p></label>
+                        <label for="male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <h5 style="display: inline-block"> Male</h5></label>
 
                         <input type="radio" id="female" name="gender" value="female">
-                        <label for="female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <p style="display: inline">Female</p></label>
+                        <label for="female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <h5 style="display: inline">Female</h5></label>
                     </span>
                     <input type="number" id="percentage-pcv" name="pcv" required placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertPercentage(); }">
                     <p id="percentage-result"></p>
@@ -196,10 +210,10 @@
                     <input type="number" name="age" id="litre-age" required placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
                     <span class="gender-span">
                         <input type="radio" id="litre-male" name="litre-gender" value="male">
-                        <label for="litre-male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <p style="display: inline-block"> Male</p></label>
+                        <label for="litre-male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <h5 style="display: inline-block"> Male</h5></label>
 
                         <input type="radio" id="litre-female" name="litre-gender" value="female">
-                        <label for="litre-female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <p style="display: inline">Female</p></label>
+                        <label for="litre-female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <h5 style="display: inline">Female</h5></label>
                     </span>
                     <input type="number" id="litre-pcv" name="litre" required placeholder="Enter PCV (l/l) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); convertLitre(); }">
                     <p id="litre-result"></p>
@@ -215,10 +229,10 @@
                 <input type="number" name="age" id="age" required placeholder="Enter  Age"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
                 <span class="gender-span">
                     <input type="radio" id="hgb-male" name="hgb-gender" value="male">
-                    <label for="hgb-male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <p style="display: inline-block"> Male</p></label>
+                    <label for="hgb-male" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person fa-xl" style="color: #74C0FC;"></i> <h5 style="display: inline-block"> Male</h5></label>
 
                     <input type="radio" id="hgb-female" name="hgb-gender" value="female">
-                    <label for="hgb-female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <p style="display: inline">Female</p></label>
+                    <label for="hgb-female" class="radio-label" style="display: inline-flex; align-items: center;"><i class="fa-solid fa-person-dress fa-xl" style="color: #f0ada8;"></i> <h5 style="display: inline">Female</h5></label>
                 </span>
                 <input type="number" id="hemoglobin" name="pcv" required placeholder="Enter PCV (%) value"  onkeydown="if (event.key === 'Enter') { event.preventDefault(); calculateHb(); }">
                 <p id="hemoglobin-result"></p>
