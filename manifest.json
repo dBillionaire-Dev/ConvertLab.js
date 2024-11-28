@@ -1,0 +1,22 @@
+{
+    "short_name": "Chemical Unit Converter",
+    "name": "ConvertLAB",
+    "description": "A chemical unit conversion app for medical labs.",
+    "start_url": "/",
+    "display": "fullscreen",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+      {
+        "src": "/images/converticon.png",
+        "sizes": "192x192",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "/images/logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
