@@ -350,7 +350,7 @@ const convertPercentage = () => {
   let percentageCalculation = percentageValue / 100;
 
   // Check if all input fields are empty and no radio button is checked
-  if (percentageValue.trim() === '' && pcvAgeValue.trim() === '' && !maleGender && !femaleGender) {
+  if (percentageValue.trim() === '' || pcvAgeValue.trim() === '' && (!maleGender || !femaleGender)) {
       percentageResult.innerHTML = '';
       openErrorPopup(); // Call the function to show the error popup
       return; // Exit the function early
@@ -402,7 +402,7 @@ const convertLitre = () => {
   let litreCalculation = litreValue * 100;
 
   // Check if all input fields are empty and no radio button is checked
-  if (litreValue.trim() === '' && litreAgeValue.trim() === '' && (!litreMaleGender && !litreFemaleGender)) {
+  if (litreValue.trim() === '' || litreAgeValue.trim() === '' && (!litreMaleGender && !litreFemaleGender)) {
       litreResult.innerHTML = '';
       openErrorPopup(); // Call the function to show the error popup
       return; // Exit the function early
@@ -455,7 +455,7 @@ const calculateHb = () => {
   const hbCalculation = hctValue / 3;
 
   // Check if all input fields are empty and no radio button is checked
-  if (hctValue.trim() === '' && ageValue.trim() === '' && !hgbMale && !hgbFemale) {
+  if (hctValue.trim() === '' || ageValue.trim() === '' && (!hgbMale || !hgbFemale)) {
       hemoglobinResult.innerHTML = '';
       openErrorPopup(); // Call the function to show the error popup
       return; // Exit the function early
