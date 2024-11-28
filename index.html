@@ -9,11 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json" />
     <title>ConvertLab</title>
 </head>
 <body>
    <main>
-
+    <div id="install-popup" style="display: none; position: fixed; bottom: 20px; right: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 16px; z-index: 1000;">
+        <button id="close-install-popup" style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 16px; cursor: pointer;">&times;</button>
+        <p style="margin: 0; font-size: 14px; color: black;">Install our app for a better experience!</p>
+        <button id="install-button" style="margin-top: 8px; padding: 8px 16px; background-color: #007BFF; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Install App</button>
+      </div>
+      
     <div class="overlay main" id="overlay">
         <header>
             <div id="logo-div">
@@ -22,7 +28,8 @@
             
             <div id="h1-div">
                 <h1>ConvertLAB</h1>
-            </div>
+            </div> 
+
         </header>
         <h2>Chemical Conversion Unit</h2>
 
