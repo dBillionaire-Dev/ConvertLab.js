@@ -1,5 +1,74 @@
 'use strict';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+}
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  // Prevent the mini-infobar from appearing
+  event.preventDefault();
+
+  // Save the event for later use
+  deferredPrompt = event;
+
+  // Show the popup
+  const installPopup = document.getElementById('install-popup');
+  if (installPopup) {
+    installPopup.style.display = 'block';
+  }
+
+  // Add event listener for the install button
+  const installButton = document.getElementById('install-button');
+  if (installButton) {
+    installButton.addEventListener('click', () => {
+      // Show the install prompt
+      deferredPrompt.prompt();
+
+      // Handle the user's choice
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+
+        // Hide the popup after the prompt
+        installPopup.style.display = 'none';
+      });
+    });
+  }
+});
+
+const closeInstallPopup = document.getElementById('close-install-popup');
+if (closeInstallPopup) {
+  closeInstallPopup.addEventListener('click', () => {
+    const installPopup = document.getElementById('install-popup');
+    if (installPopup) {
+      installPopup.style.display = 'none'; // Hide the popup
+    }
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  console.log('PWA was installed');
+  const installButton = document.getElementById('install-button');
+  if (installButton) {
+    installButton.style.display = 'none'; // Hide the button
+  }
+});
+
+
 const mmolPopup = document.getElementById('mmol-popup');
 const ldlPopup = document.getElementById('ldl-popup');
 const mgdlPopup = document.getElementById('mgdl-popup');
