@@ -18,7 +18,7 @@ ConvertLab simplifies chemical, mathematical, and general conversions. It’s de
 
 ## Getting Started
 1. **Accessing the App**
-   - Open the app via [ConvertLab](https://convertlab-trial.vercel.app/).
+   - Open the app via [ConvertLab](https://convertlabccu.vercel.app/).
    - Ensure an active internet connection.
 
 2. **Navigation**
