@@ -319,11 +319,11 @@ const calculateLdl = () => {
     ldlResult.innerHTML = '';
     openErrorPopup();
   } else if (ldlCalculation > 150) {
-    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L <strong style="color:red">(HIGH)</strong>`;
+    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mg/dL <strong style="color:red">(HIGH)</strong>`;
   } else if (ldlCalculation < 50) {
-    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L <strong style="color:blue">(LOW)</strong>`;
+    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mg/dL <strong style="color:blue">(LOW)</strong>`;
   } else {
-    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mmol/L`;
+    ldlResult.innerHTML = `Result: LDL-C = ${ldlCalculation.toFixed(2)} mg/dL`;
   }
   
 };
